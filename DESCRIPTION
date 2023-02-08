@@ -1,0 +1,11 @@
+Package: ineptR
+Title: Instituto Nacional de Estatistica - Portugal
+Version: 0.0.0.9000
+Authors@R: 
+    person("Carlos", "Matos", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Wrapper around the INE - PT API to get data from their website
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
