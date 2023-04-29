@@ -1,0 +1,75 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ineptR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+## Overview
+
+The goal of ineptR is to facilitate and automate data extraction from Statistics Portugal (Instituto Nacional de Estatistica - INE, PT) with R.  
+It consists mainly of wrapper functions around the [INE API](https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522), and some helper functions to inspect metadata.  
+One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single *get_ine_data* function call.
+
+
+## Installation
+
+You can install the development version of ineptR from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("c-matos/ineptR")
+```
+
+## Usage
+
+This is a basic workflow to inspect and get data from INE.
+
+```{r example}
+#Load package
+library(ineptR)
+```
+
+1. Navigate to the INE website and identify the desired indicador ID. 
+* Example: [Proportion of domestic budget funded by domestic taxes (%); Annual](https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2&xlang=pt.)
+* Get the indicator ID from the indOcorrCod query parameter in the URL. In this case the ID is **_001003_**
+
+2. Confirm that the indicator ID is valid:
+```{r cars}
+#Check if indicator is valid
+is_indicator_valid("0010003")
+```
+
+3. Inspect metadata:
+```{r}
+get_metadata("0010003")
+```
+
+4. Get information about the dimensions:
+* How many dimensions are in this indicator and what are they?
+```{r}
+get_dim_info("0010003")
+```
+
+* What are the unique values for each dimension?
+```{r}
+get_dim_values("0010003")
+```
+
+5. Get the data:
+```{r}
+get_ine_data("0010003")
+```

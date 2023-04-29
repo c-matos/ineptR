@@ -1,0 +1,9 @@
+url: ~
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    pkgdown-nav-height: 100px
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Ubuntu"}
+    code_font: {google: "JetBrains Mono"}
