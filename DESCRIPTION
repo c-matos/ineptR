@@ -1,0 +1,24 @@
+Package: ineptR
+Title: Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Carlos", "Matos", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1134-0396"))
+Description: Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    httr,
+    jsonlite,
+    lifecycle,
+    magrittr,
+    purrr,
+    readr,
+    rlang,
+    stringr,
+    tibble,
+    tidyr
+URL: https://c-matos.github.io/ineptR/
