@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ineptR
+# ineptR <a href="https://c-matos.github.io/ineptR/"><img src="man/figures/logo.png" align="right" height="132" /></a>
+
 
 <!-- badges: start -->
 <!-- badges: end -->

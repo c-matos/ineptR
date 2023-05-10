@@ -115,7 +115,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
         dplyr::summarise(p = prod(n)) %>%
         as.integer()
 
-      temp_out <- c(temp_out, setNames(mystat, i))
+      temp_out <- c(temp_out, stats::setNames(mystat, i))
 
       # #store the value in a named vector, with dimname=mystat
       # # ?????

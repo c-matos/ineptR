@@ -6,6 +6,8 @@
 \alias{ineptR-package}
 \title{ineptR: Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API.
 }
 \seealso{

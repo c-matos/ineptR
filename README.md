@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ineptR
+# ineptR <a href="https://c-matos.github.io/ineptR/"><img src="man/figures/logo.png" align="right" height="132" /></a>
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -88,7 +88,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-05-05T15:21:49.098+01:00"
+#> [1] "2023-05-10T20:26:26.926+01:00"
 ```
 
 4.  Get information about the dimensions:
