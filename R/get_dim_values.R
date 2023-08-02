@@ -19,7 +19,9 @@
 #' @export
 #'
 #' @examples
+#'
 #' get_dim_values("0010003")
+#'
 get_dim_values <- function(indicator, lang = "PT") {
   if (is_indicator_valid(indicator)) {
     get_metadata_raw(indicator = indicator, lang = lang) %>%

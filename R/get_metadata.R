@@ -15,7 +15,9 @@
 #'
 #' @export
 #' @examples
+#'
 #' get_metadata("0010003")
+#'
 get_metadata <- function(indicator, lang = "PT") {
   temp_metadata <- get_metadata_raw(indicator = indicator, lang = lang)
   temp_metadata["Dimensoes"] <- NULL
