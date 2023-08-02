@@ -25,5 +25,7 @@ stating "(PT) O codigo do indicador nao existe. / (EN) The indicator code does n
 \cr Calling \code{is_indicator_valid()} before using this function is recommended.
 }
 \examples{
+
 get_dim_values("0010003")
+
 }

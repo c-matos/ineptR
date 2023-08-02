@@ -20,5 +20,7 @@ TRUE if indicator exists, otherwise FALSE.
 Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
 }
 \examples{
+
 is_indicator_valid("0010003")
+
 }

@@ -33,7 +33,7 @@ get_dim_values <- function(indicator, lang = "PT") {
       tidyr::unnest_wider(.data$value) #using .data due to a note appearing in devtools::check()
   } else {
     get_metadata_raw(indicator = indicator, lang = lang) %>%
-      magrittr::extract2("Sucesso") %>%  #NB: probably will not work will lang = "EN"
+      magrittr::extract2("Sucesso") %>%
       magrittr::use_series("Falso") %>%
       magrittr::extract2(1) %>%
       magrittr::use_series("Msg") %>%
