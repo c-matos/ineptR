@@ -4,6 +4,8 @@
 # ineptR <a href="https://c-matos.github.io/ineptR/"><img src="man/figures/logo.png" align="right" height="132" /></a>
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Overview
@@ -91,7 +93,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-02T15:36:24.276+01:00"
+#> [1] "2023-08-02T17:10:46.383+01:00"
 ```
 
 4.  Get information about the dimensions:

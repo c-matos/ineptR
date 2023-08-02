@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
 
 ```{r setup, message=FALSE}
 library(ineptR)
+library(tidyverse)
 ```
 
 The [main page](https://c-matos.github.io/ineptR) shows how to use the function `get_ine_data()` to get the complete dataset from a given indicator.  
