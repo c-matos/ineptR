@@ -15,9 +15,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.6/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.6/font.css" rel="stylesheet">
-<link href="deps/Ubuntu-0.4.6/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.7/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.7/font.css" rel="stylesheet">
+<link href="deps/Ubuntu-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R">
@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ineptR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +48,12 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/use_cases.html">Use cases</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -56,7 +62,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/c-matos/ineptR/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -70,13 +83,15 @@
 </h1>
 </div>
 <!-- badges: start -->
-<!-- badges: end -->
+
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>The goal of ineptR is to facilitate and automate data extraction from Statistics Portugal (Instituto Nacional de Estatistica - INE, PT) with R.<br>
 It consists mainly of wrapper functions around the <a href="https://www.ine.pt/xportal/xmain?xpid=INE&amp;xpgid=ine_api&amp;INST=322751522" class="external-link">INE API</a>, and some helper functions to inspect metadata.<br>
-One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single <em>get_ine_data</em> function call.</p>
+One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single <code><a href="reference/get_ine_data.html">get_ine_data()</a></code> function call.</p>
+<p>For a basic usage example, keep reading.<br>
+For more in-depth examples, check <code><a href="articles/use_cases.html">vignette("use_cases")</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -92,7 +107,7 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 <p>This is a basic workflow to inspect and get data from INE.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Load package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://c-matos.github.io/ineptR/">ineptR</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://c-matos.github.io/ineptR">ineptR</a></span><span class="op">)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Navigate to the INE website and identify the desired indicador ID.</li>
 </ol>
@@ -145,7 +160,7 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 <span><span class="co">#&gt; [1] "2022-12-28"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $DataExtracao</span></span>
-<span><span class="co">#&gt; [1] "2023-05-10T20:26:26.926+01:00"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2023-08-02T17:10:46.383+01:00"</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Get information about the dimensions:</li>
 </ol>
@@ -154,7 +169,7 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_dim_info.html">get_dim_info</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2 x 3</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span><span class="co">#&gt;   dim_num abrv                            versao</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                           &lt;chr&gt; </span></span>
 <span><span class="co">#&gt; 1 1       Período de referência dos dados XXXXX </span></span>
@@ -164,23 +179,23 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_dim_values.html">get_dim_values</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 15 x 7</span></span>
+<span><span class="co">#&gt; # A tibble: 15 × 7</span></span>
 <span><span class="co">#&gt;    dim_num cat_id  categ_cod categ_dsg categ_ord categ_nivel value_id        </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;           </span></span>
-<span><span class="co">#&gt;  1 1       S7A2010 S7A2010   2010      1         1           Dim_Num1_S7A2010</span></span>
-<span><span class="co">#&gt;  2 1       S7A2011 S7A2011   2011      2         1           Dim_Num1_S7A2011</span></span>
-<span><span class="co">#&gt;  3 1       S7A2012 S7A2012   2012      3         1           Dim_Num1_S7A2012</span></span>
-<span><span class="co">#&gt;  4 1       S7A2013 S7A2013   2013      4         1           Dim_Num1_S7A2013</span></span>
-<span><span class="co">#&gt;  5 1       S7A2014 S7A2014   2014      5         1           Dim_Num1_S7A2014</span></span>
-<span><span class="co">#&gt;  6 1       S7A2015 S7A2015   2015      6         1           Dim_Num1_S7A2015</span></span>
-<span><span class="co">#&gt;  7 1       S7A2016 S7A2016   2016      7         1           Dim_Num1_S7A2016</span></span>
-<span><span class="co">#&gt;  8 1       S7A2017 S7A2017   2017      8         1           Dim_Num1_S7A2017</span></span>
-<span><span class="co">#&gt;  9 1       S7A2018 S7A2018   2018      9         1           Dim_Num1_S7A2018</span></span>
-<span><span class="co">#&gt; 10 1       S7A2019 S7A2019   2019      10        1           Dim_Num1_S7A2019</span></span>
-<span><span class="co">#&gt; 11 1       S7A2020 S7A2020   2020      11        1           Dim_Num1_S7A2020</span></span>
-<span><span class="co">#&gt; 12 1       S7A2021 S7A2021   2021      12        1           Dim_Num1_S7A2021</span></span>
-<span><span class="co">#&gt; 13 1       S7A2022 S7A2022   2022      13        1           Dim_Num1_S7A2022</span></span>
-<span><span class="co">#&gt; 14 1       S7A2023 S7A2023   2023      14        1           Dim_Num1_S7A2023</span></span>
+<span><span class="co">#&gt;  1 1       S7A2010 S7A2010   2010      20100101  1           Dim_Num1_S7A2010</span></span>
+<span><span class="co">#&gt;  2 1       S7A2011 S7A2011   2011      20110101  1           Dim_Num1_S7A2011</span></span>
+<span><span class="co">#&gt;  3 1       S7A2012 S7A2012   2012      20120101  1           Dim_Num1_S7A2012</span></span>
+<span><span class="co">#&gt;  4 1       S7A2013 S7A2013   2013      20130101  1           Dim_Num1_S7A2013</span></span>
+<span><span class="co">#&gt;  5 1       S7A2014 S7A2014   2014      20140101  1           Dim_Num1_S7A2014</span></span>
+<span><span class="co">#&gt;  6 1       S7A2015 S7A2015   2015      20150101  1           Dim_Num1_S7A2015</span></span>
+<span><span class="co">#&gt;  7 1       S7A2016 S7A2016   2016      20160101  1           Dim_Num1_S7A2016</span></span>
+<span><span class="co">#&gt;  8 1       S7A2017 S7A2017   2017      20170101  1           Dim_Num1_S7A2017</span></span>
+<span><span class="co">#&gt;  9 1       S7A2018 S7A2018   2018      20180101  1           Dim_Num1_S7A2018</span></span>
+<span><span class="co">#&gt; 10 1       S7A2019 S7A2019   2019      20190101  1           Dim_Num1_S7A2019</span></span>
+<span><span class="co">#&gt; 11 1       S7A2020 S7A2020   2020      20200101  1           Dim_Num1_S7A2020</span></span>
+<span><span class="co">#&gt; 12 1       S7A2021 S7A2021   2021      20210101  1           Dim_Num1_S7A2021</span></span>
+<span><span class="co">#&gt; 13 1       S7A2022 S7A2022   2022      20220101  1           Dim_Num1_S7A2022</span></span>
+<span><span class="co">#&gt; 14 1       S7A2023 S7A2023   2023      20230101  1           Dim_Num1_S7A2023</span></span>
 <span><span class="co">#&gt; 15 2       PT      PT        Portugal  1         1           Dim_Num2_PT</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Get the data:</li>
@@ -204,7 +219,14 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 <span><span class="co">#&gt; 14  2023     PT Portugal 66.08</span></span></code></pre></div>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/c-matos/ineptR/" class="external-link">Browse source code</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -227,7 +249,12 @@ One limitation of the INE API is that data extraction is limited to 40k data poi
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
