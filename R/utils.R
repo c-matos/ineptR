@@ -148,7 +148,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
   #Generate urls with the parameters passed by the user, that are stored in opt
 
   #base ine api url (move to a previous location)
-  baseurl <- "https://www.ine.pt/ine/json_indicador/pindica.jsp"
+  baseurl <- "http://www.ine.pt/ine/json_indicador/pindica.jsp"
 
   #create the necessary urls for extraction
   urls <- tidyr::crossing(!!!opt) %>% #!!! is used to evaluate a list of expressions; !! would work for a vector
