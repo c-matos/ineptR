@@ -8,3 +8,5 @@
 ^README\.Rmd$
 ^\.github$
 ^vignettes/articles$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
