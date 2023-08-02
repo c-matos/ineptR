@@ -1,6 +1,6 @@
 Package: ineptR
 Title: Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1134-0396"))
