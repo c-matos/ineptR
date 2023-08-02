@@ -109,11 +109,6 @@ If one of the dimensions is not included, output includes all values by default.
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_ine_data</span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span> <span class="co"># A simple example</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0010003&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0010003&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0010003&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0010003&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0010003&amp;lang=PT'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dim_1 geocod   geodsg valor</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   2010     PT Portugal 58.31</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   2011     PT Portugal 60.04</span>
@@ -131,9 +126,6 @@ If one of the dimensions is not included, output includes all values by default.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14  2023     PT Portugal 66.08</span>
 <span class="r-in"><span><span class="fu">get_ine_data</span><span class="op">(</span><span class="st">"0008206"</span>, dim1 <span class="op">=</span> <span class="st">"S7A1996"</span>, dim2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"11"</span>,<span class="st">"111"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             dim4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">19</span><span class="op">)</span>, dim5 <span class="op">=</span> <span class="st">"TLES"</span><span class="op">)</span> <span class="co"># A more complex example</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0008206&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0008206&amp;lang=PT'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>incomplete final line found on 'https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0008206&amp;lang=PT'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    dim_1 geocod     geodsg dim_3 dim_3_t dim_4        dim_4_t dim_5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1996     11      Norte     2       M     1 Menos de 1 ano  TLES</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   1996     11      Norte     T      HM     1 Menos de 1 ano  TLES</span>
