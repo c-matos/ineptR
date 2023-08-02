@@ -10,7 +10,7 @@
 #' \cr Calling `is_indicator_valid()` before using this function is recommended.
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
-#' @param lang Only "PT" implemented.
+#' @param lang One of "PT" or "EN". Default is "PT".
 #' @return A data frame with dim_num (dimension number), abrv (dimension description) and versao (dimension version) for the selected indicator.
 #'         A fourth column 'nota_dsg' is present for some indicators, with additional notes about the dimensions.
 #' @importFrom magrittr %>%

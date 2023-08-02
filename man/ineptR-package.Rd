@@ -13,12 +13,13 @@ Set of wrapper and helper functions to facilitate interaction with the Statistic
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://c-matos.github.io/ineptR/}
+  \item \url{https://c-matos.github.io/ineptR}
+  \item \url{https://github.com/c-matos/ineptR}
 }
 
 }
 \author{
-\strong{Maintainer}: Carlos Matos \email{first.last@example.com} (\href{https://orcid.org/0000-0003-1134-0396}{ORCID})
+\strong{Maintainer}: Carlos Matos \email{carlosmdmatos@gmail.com} (\href{https://orcid.org/0000-0003-1134-0396}{ORCID})
 
 }
 \keyword{internal}

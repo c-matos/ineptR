@@ -3,23 +3,22 @@
 #'
 #' @description
 #' `r lifecycle::badge('experimental')` \cr
-#' A short description...
+#' This is the function that actually performs the API call.
 #'
 #' @details
-#' Logs the expected remaining duration in the console. Can be very high for indicators with many dimensions and/or many unique values.
-#' (E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract completely)
+#' Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
 #'
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
-#' @param lang Only "PT" implemented.
+#' @param lang One of "PT" or "EN". Default is "PT".
 #' @param expected.duration If TRUE, prints the expected remaining duration in the console.
 #' @param max_cells Integer smaller than or equal to 40000, the maximum number of cells allowed in each API call.
 #'                  Default value of 30000
 #' @param ... Values for each Dimension of the indicator.
-#'            Each parameter should be in the form dimN, with N one of \{1, ..., Total number of dimensions\}.
-#'            If one of the dimensions is not included, output includes all values
+#'            Each parameter should be in the form DimN, with N one of \{1, ..., Nº of dimensions\}.
+#'            If one of the dimensions is not included, output includes all values by default.
 #'
-#' @return The desired values
+#' @return Dataset for the given indicator.
 #' @export
 #'
 #' @examples
@@ -27,6 +26,7 @@
 #' get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
 #'              dim4 = c(1,19), dim5 = "TLES") # A more complex example
 get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cells = 30000, ...) {
+  dim_1 <- NULL
   #get the urls
   myurls <- get_api_urls(indicator, max_cells, ...)
 

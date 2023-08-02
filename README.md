@@ -17,7 +17,10 @@ and some helper functions to inspect metadata.
 One limitation of the INE API is that data extraction is limited to 40k
 data points in each API call. For convenience, this package deals with
 that limitation internally, and the user can get all the records in a
-single *get_ine_data* function call.
+single `get_ine_data()` function call.
+
+For a basic usage example, keep reading.  
+For more in-depth examples, check `vignette("use_cases")`.
 
 ## Installation
 
@@ -88,7 +91,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-05-10T20:26:26.926+01:00"
+#> [1] "2023-08-02T15:36:24.276+01:00"
 ```
 
 4.  Get information about the dimensions:
@@ -97,7 +100,7 @@ get_metadata("0010003")
 
 ``` r
 get_dim_info("0010003")
-#> # A tibble: 2 x 3
+#> # A tibble: 2 × 3
 #>   dim_num abrv                            versao
 #>   <chr>   <chr>                           <chr> 
 #> 1 1       Período de referência dos dados XXXXX 
@@ -108,23 +111,23 @@ get_dim_info("0010003")
 
 ``` r
 get_dim_values("0010003")
-#> # A tibble: 15 x 7
+#> # A tibble: 15 × 7
 #>    dim_num cat_id  categ_cod categ_dsg categ_ord categ_nivel value_id        
 #>    <chr>   <chr>   <chr>     <chr>     <chr>     <chr>       <chr>           
-#>  1 1       S7A2010 S7A2010   2010      1         1           Dim_Num1_S7A2010
-#>  2 1       S7A2011 S7A2011   2011      2         1           Dim_Num1_S7A2011
-#>  3 1       S7A2012 S7A2012   2012      3         1           Dim_Num1_S7A2012
-#>  4 1       S7A2013 S7A2013   2013      4         1           Dim_Num1_S7A2013
-#>  5 1       S7A2014 S7A2014   2014      5         1           Dim_Num1_S7A2014
-#>  6 1       S7A2015 S7A2015   2015      6         1           Dim_Num1_S7A2015
-#>  7 1       S7A2016 S7A2016   2016      7         1           Dim_Num1_S7A2016
-#>  8 1       S7A2017 S7A2017   2017      8         1           Dim_Num1_S7A2017
-#>  9 1       S7A2018 S7A2018   2018      9         1           Dim_Num1_S7A2018
-#> 10 1       S7A2019 S7A2019   2019      10        1           Dim_Num1_S7A2019
-#> 11 1       S7A2020 S7A2020   2020      11        1           Dim_Num1_S7A2020
-#> 12 1       S7A2021 S7A2021   2021      12        1           Dim_Num1_S7A2021
-#> 13 1       S7A2022 S7A2022   2022      13        1           Dim_Num1_S7A2022
-#> 14 1       S7A2023 S7A2023   2023      14        1           Dim_Num1_S7A2023
+#>  1 1       S7A2010 S7A2010   2010      20100101  1           Dim_Num1_S7A2010
+#>  2 1       S7A2011 S7A2011   2011      20110101  1           Dim_Num1_S7A2011
+#>  3 1       S7A2012 S7A2012   2012      20120101  1           Dim_Num1_S7A2012
+#>  4 1       S7A2013 S7A2013   2013      20130101  1           Dim_Num1_S7A2013
+#>  5 1       S7A2014 S7A2014   2014      20140101  1           Dim_Num1_S7A2014
+#>  6 1       S7A2015 S7A2015   2015      20150101  1           Dim_Num1_S7A2015
+#>  7 1       S7A2016 S7A2016   2016      20160101  1           Dim_Num1_S7A2016
+#>  8 1       S7A2017 S7A2017   2017      20170101  1           Dim_Num1_S7A2017
+#>  9 1       S7A2018 S7A2018   2018      20180101  1           Dim_Num1_S7A2018
+#> 10 1       S7A2019 S7A2019   2019      20190101  1           Dim_Num1_S7A2019
+#> 11 1       S7A2020 S7A2020   2020      20200101  1           Dim_Num1_S7A2020
+#> 12 1       S7A2021 S7A2021   2021      20210101  1           Dim_Num1_S7A2021
+#> 13 1       S7A2022 S7A2022   2022      20220101  1           Dim_Num1_S7A2022
+#> 14 1       S7A2023 S7A2023   2023      20230101  1           Dim_Num1_S7A2023
 #> 15 2       PT      PT        Portugal  1         1           Dim_Num2_PT
 ```
 

@@ -7,7 +7,7 @@
 #' Be aware that this function will still return a value and not throw an error if the indicator does not exist.
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
-#' @param lang Only "PT" implemented.
+#' @param lang One of "PT" or "EN". Default is "PT".
 #'
 #' @return API response body as list.
 #'

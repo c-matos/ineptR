@@ -9,7 +9,7 @@ get_dim_values(indicator, lang = "PT")
 \arguments{
 \item{indicator}{INE indicator ID as a 7 character string. Example: "0010003".}
 
-\item{lang}{Only "PT" implemented.}
+\item{lang}{One of "PT" or "EN". Default is "PT".}
 }
 \value{
 A data frame with dim_num (dimension number), cat_id (dimension description),

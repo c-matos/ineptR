@@ -1,0 +1,132 @@
+---
+title: "Use cases"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+```{r setup, message=FALSE}
+library(ineptR)
+library(tidyverse)
+```
+
+The [main page](https://c-matos.github.io/ineptR) shows how to use the function `get_ine_data()` to get the complete dataset from a given indicator.  
+However, some use cases may require only a subset of the available data. 
+To tackle such situations, the function `get_ine_data()` accepts parameters where the user can specify the desired values for each dimension.  
+These parameters come in the form *"dimN"* (e.g. dim1, dim2, ...), up to the number of available dimensions for the selected indicator (use `ineptR::get_dim_info()` to see the available dimensions).
+
+Some example use cases are provided below.
+
+## Cross-sectional analysis
+
+Suppose you want to analyse only the most recent population data. The indicator "0008273" has population data. Let's check what dimensions are available and explore the indicator:
+
+```{r}
+indicator <- "0008273" #Resident population (No.) by Place of residence (NUTS - 2013), Sex and Age group; Annual
+get_dim_info(indicator, lang = "EN") # Default lang is PT
+```
+There are four available dimensions available for this indicator.  
+
+Dimension 1 is **always** the time dimension.  
+Dimension 2 is **always** the place dimension.  
+Other dimensions vary by indicator. In this case dimension 3 is *Sex* and dimension 4 is *Age group*.
+
+What is the most recent time period?
+
+*Alternative 1*: Using the `get_metadata()` function.  
+```{r}
+indicator_metadata <- ineptR::get_metadata(indicator, lang = "EN")
+indicator_metadata
+
+most_recent_year <- indicator_metadata %>% 
+  pluck("UltimoPeriodo") %>% 
+  as.integer()
+most_recent_year
+```
+
+This function quickly shows the first and last time periods.  
+However, it does not provide the id codes for each possible value, that we will need further along in our analysis.
+
+*Alternative 2*: Using the `get_dim_values()` function.  
+```{r}
+#Get a data frame with all the values for all dimensions
+dimension_values <- get_dim_values(indicator, lang = "EN")
+
+#check the internal structure
+str(dimension_values)
+
+#Explore the values
+head(dimension_values)
+
+most_recent_year <- dimension_values %>%
+  filter(dim_num == 1) %>%
+  summarise(categ_dsg = max(as.integer(categ_dsg))) %>%
+  as.integer()
+```
+The most recent value is `r most_recent_year`
+
+
+```{r}
+
+#Exploring the other dimensions
+dimension_values %>% group_split(dim_num)
+```
+
+The advantage of this approach is that it shows the *categ_cod* variable, that we can pass to the *dimN* parameters of the `get_ine_data()` function to obtain only a subset of the available data.  
+
+
+We see `r nrow(dplyr::filter(dimension_values,dim_num==2))` geographic units, including NUTS 1, NUTS 2, NUTS 3 and municipalities as the most disaggregated level. MF, M and F sexes are available. Five year age groups are available.
+
+Now suppose we want to compare population size across NUTS 3, for all available sexes and age groups. (Note that all NUTS 3 have a 3-character *categ_cod*).  
+The `ineptR::get_ine_data()` function conveniently allows us to only request the desired data:
+```{r}
+
+#Get the id of the latest time period
+latest_year_id <- dimension_values$categ_cod[dimension_values$categ_dsg == most_recent_year]
+
+latest_year_id
+
+#Get the id of all NUTS 3
+nuts3_id <- dimension_values %>% 
+  filter(str_length(categ_cod)==3) %>% #NUTS 3 have a 3-character code
+  pull(categ_cod)
+
+nuts3_id
+
+#Get the data
+indicator_output <- get_ine_data(indicator, 
+                                 lang = "EN", 
+                                 dim1 = latest_year_id, 
+                                 dim2 = nuts3_id)
+
+```
+
+<span style="color: darkred;">Important:</span>  
+The parameters passed to `ineptR::get_ine_data()` are a subset from the **categ_cod** values that we obtained with the `ineptR::get_dim_values()`.  
+In this example we passed a subset of values only to dim1 and dim2, however we can use this approach to any combination of the available dimensions.
+
+## Example with a large and cumbersome dataset
+
+The indicator *Deaths (No.) by Place of residence (NUTS - 2013), Sex, Age group and Death cause (European short-list); Annual (6)*, with ID "0008206" is a very large dataset:
+```{r}
+indicator <- "0008206"
+ineptR::get_dim_info(indicator, lang = "EN")
+
+#Check number of unique values by dimension
+unique_values <- ineptR::get_dim_values(indicator, lang = "EN") %>% 
+  group_by(dim_num) %>% 
+  summarise(unique_values = n())
+
+unique_values
+
+```
+With the limit of 40k records per API call, extracting all values would result in over `r round(prod(unique_values$unique_values)/40000) + 1` API calls in the best case scenario. This would take many hours and might result in out of memory errors or API timeout. In such situations the recommended approach is to iterate over one of the dimensions (e.g. Time dimension), and store the data obtained at each iteration.
+
+
+
+

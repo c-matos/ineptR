@@ -30,6 +30,7 @@ calc_num_dims <- function(indicator, lang="PT") {
 
 #Calculate the number of unique values in each dimension
 calc_dims_length <- function(indicator, lang="PT") {
+  dim_num <- NULL
   get_dim_values(indicator) %>%
     dplyr::group_by(dim_num) %>%
     dplyr::tally()
@@ -40,6 +41,7 @@ calc_dims_length <- function(indicator, lang="PT") {
 ##Some notes: "dim" url parameter is NOT case sensitive. "dim" order in the url DOES NOT matter
 ## NB: When dim1 is not passed it assumes the most recent one!!!
 get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
+  dim_num <- cat_id <- n <- dim_1 <- NULL
 
   #unpack the ellipsis into a list
   opt <- list(...)

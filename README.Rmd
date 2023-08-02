@@ -23,8 +23,10 @@ knitr::opts_chunk$set(
 
 The goal of ineptR is to facilitate and automate data extraction from Statistics Portugal (Instituto Nacional de Estatistica - INE, PT) with R.  
 It consists mainly of wrapper functions around the [INE API](https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522), and some helper functions to inspect metadata.  
-One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single *get_ine_data* function call.
+One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single `get_ine_data()` function call.
 
+For a basic usage example, keep reading.  
+For more in-depth examples, check `vignette("use_cases")`.
 
 ## Installation
 

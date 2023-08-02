@@ -15,7 +15,7 @@ get_ine_data(
 \arguments{
 \item{indicator}{INE indicator ID as a 7 character string. Example: "0010003".}
 
-\item{lang}{Only "PT" implemented.}
+\item{lang}{One of "PT" or "EN". Default is "PT".}
 
 \item{expected.duration}{If TRUE, prints the expected remaining duration in the console.}
 
@@ -23,19 +23,18 @@ get_ine_data(
 Default value of 30000}
 
 \item{...}{Values for each Dimension of the indicator.
-Each parameter should be in the form dimN, with N one of \{1, ..., Total number of dimensions\}.
-If one of the dimensions is not included, output includes all values}
+Each parameter should be in the form DimN, with N one of \{1, ..., Nº of dimensions\}.
+If one of the dimensions is not included, output includes all values by default.}
 }
 \value{
-The desired values
+Dataset for the given indicator.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
-A short description...
+This is the function that actually performs the API call.
 }
 \details{
-Logs the expected remaining duration in the console. Can be very high for indicators with many dimensions and/or many unique values.
-(E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract completely)
+Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
 }
 \examples{
 get_ine_data("0010003") # A simple example

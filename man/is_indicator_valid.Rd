@@ -9,10 +9,10 @@ is_indicator_valid(indicator, lang = "PT")
 \arguments{
 \item{indicator}{INE indicator ID as a 7 character string. Example: "0010003".}
 
-\item{lang}{Only "PT" implemented.}
+\item{lang}{One of "PT" or "EN". Default is "PT".}
 }
 \value{
-TRUE if indicador exists, otherwise returns FALSE.
+TRUE if indicator exists, otherwise FALSE.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

@@ -9,7 +9,7 @@ get_metadata(indicator, lang = "PT")
 \arguments{
 \item{indicator}{INE indicator ID as a 7 character string. Example: "0010003".}
 
-\item{lang}{Only "PT" implemented.}
+\item{lang}{One of "PT" or "EN". Default is "PT".}
 }
 \value{
 API response body as list.

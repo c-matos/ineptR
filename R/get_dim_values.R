@@ -10,7 +10,7 @@
 #' \cr Calling `is_indicator_valid()` before using this function is recommended.
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
-#' @param lang Only "PT" implemented.
+#' @param lang One of "PT" or "EN". Default is "PT".
 #' @return A data frame with dim_num (dimension number), cat_id (dimension description),
 #'         categ_cod, categ_dsg (Category description), categ_ord (order in which the category appears in the website),
 #'         categ_nivel (hierarchical order) and value_id (id row for this data frame) for the selected indicator.
