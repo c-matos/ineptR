@@ -20,6 +20,7 @@
 #'
 #' @examples
 #' \donttest{
+
 #' #get_dim_values("0010003")
 #' }
 get_dim_values <- function(indicator, lang = "PT") {
