@@ -107,52 +107,11 @@ If one of the dimensions is not included, output includes all values by default.
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">get_ine_data</span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span> <span class="co"># A simple example</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    dim_1 geocod   geodsg valor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   2010     PT Portugal 58.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2011     PT Portugal 60.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   2012     PT Portugal 60.53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   2013     PT Portugal 58.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   2014     PT Portugal  62.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   2015     PT Portugal 61.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   2016     PT Portugal 64.61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   2017     PT Portugal 64.55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   2018     PT Portugal 67.41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  2019     PT Portugal 69.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  2020     PT Portugal 58.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  2021     PT Portugal 60.72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  2022     PT Portugal 64.18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  2023     PT Portugal 66.08</span>
 <span class="r-in"><span><span class="fu">get_ine_data</span><span class="op">(</span><span class="st">"0008206"</span>, dim1 <span class="op">=</span> <span class="st">"S7A1996"</span>, dim2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"11"</span>,<span class="st">"111"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             dim4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">19</span><span class="op">)</span>, dim5 <span class="op">=</span> <span class="st">"TLES"</span><span class="op">)</span> <span class="co"># A more complex example</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    dim_1 geocod     geodsg dim_3 dim_3_t dim_4        dim_4_t dim_5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1996     11      Norte     2       M     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1996     11      Norte     T      HM     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   1996     11      Norte     1       H     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   1996     11      Norte     2       M    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   1996     11      Norte     T      HM    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   1996     11      Norte     1       H    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   1996    111 Alto Minho     2       M     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   1996    111 Alto Minho     T      HM     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   1996    111 Alto Minho     1       H     1 Menos de 1 ano  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  1996    111 Alto Minho     T      HM    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  1996    111 Alto Minho     1       H    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  1996    111 Alto Minho     2       M    19 85 e mais anos  TLES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     dim_5_t valor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Todas as causas de morte   142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Todas as causas de morte   338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Todas as causas de morte   196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Todas as causas de morte  4832</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Todas as causas de morte  7154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Todas as causas de morte  2322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  Todas as causas de morte     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  Todas as causas de morte    14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Todas as causas de morte     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 Todas as causas de morte   799</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Todas as causas de morte   262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 Todas as causas de morte   537</span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
