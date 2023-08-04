@@ -21,12 +21,10 @@
 #' @return Dataset for the given indicator.
 #' @export
 #'
-#' @examples
-#'
+#' @examplesIf FALSE
 #' get_ine_data("0010003") # A simple example
 #' get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
 #'              dim4 = c(1,19), dim5 = "TLES") # A more complex example
-#'
 get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cells = 30000, ...) {
   dim_1 <- NULL
   #get the urls

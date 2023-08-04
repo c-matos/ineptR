@@ -17,7 +17,7 @@
 #' @importFrom rlang .data
 #' @export
 #'
-#' @examples
+#' @examplesIf FALSE
 #'
 #' get_dim_info("0010003")
 #'

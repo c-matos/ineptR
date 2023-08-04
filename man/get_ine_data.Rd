@@ -37,9 +37,9 @@ This is the function that actually performs the API call.
 Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
 }
 \examples{
-
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_ine_data("0010003") # A simple example
 get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
              dim4 = c(1,19), dim5 = "TLES") # A more complex example
-
+\dontshow{\}) # examplesIf}
 }

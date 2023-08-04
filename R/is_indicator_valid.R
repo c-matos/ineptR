@@ -11,10 +11,8 @@
 #' @return TRUE if indicator exists, otherwise FALSE.
 #' @export
 #'
-#' @examples
-#'
+#' @examplesIf FALSE
 #' is_indicator_valid("0010003")
-#'
 is_indicator_valid <- function(indicator, lang="PT") {
   metadata <- get_metadata_raw(indicator = indicator, lang = lang)
   return(!is.null(metadata$Sucesso$Verdadeiro))

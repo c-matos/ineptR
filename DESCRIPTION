@@ -23,4 +23,5 @@ Imports:
     tidyr
 URL: https://c-matos.github.io/ineptR, https://github.com/c-matos/ineptR
 Suggests: 
-    rmarkdown
+    rmarkdown,
+    curl

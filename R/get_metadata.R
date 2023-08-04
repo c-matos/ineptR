@@ -14,8 +14,7 @@
 #' @seealso [ineptR::is_indicator_valid()] can be used to check if the indicator is valid before calling this function.
 #'
 #' @export
-#' @examples
-#'
+#' @examplesIf FALSE
 #' get_metadata("0010003")
 #'
 get_metadata <- function(indicator, lang = "PT") {

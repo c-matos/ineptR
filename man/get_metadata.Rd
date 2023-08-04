@@ -21,9 +21,9 @@ API response body as list.
 Be aware that this function will still return a value and not throw an error if the indicator does not exist.
 }
 \examples{
-
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_metadata("0010003")
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=is_indicator_valid]{is_indicator_valid()}} can be used to check if the indicator is valid before calling this function.
