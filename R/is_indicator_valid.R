@@ -1,7 +1,8 @@
 #' Check if indicator exists
 #'
 #' @description
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('experimental')` \cr
+#' #' Check if indicator exists
 #'
 #' Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
 #'

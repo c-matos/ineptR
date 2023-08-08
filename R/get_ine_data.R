@@ -3,7 +3,7 @@
 #'
 #' @description
 #' `r lifecycle::badge('experimental')` \cr
-#' This is the function that actually performs the API call.
+#' Return tidy data frames from Instituto Nacional de Estatística API
 #'
 #' @details
 #' Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
@@ -15,28 +15,37 @@
 #' @param max_cells Integer smaller than or equal to 40000, the maximum number of cells allowed in each API call.
 #'                  Default value of 30000
 #' @param ... Values for each Dimension of the indicator.
-#'            Each parameter should be in the form DimN, with N one of \{1, ..., Nº of dimensions\}.
-#'            If one of the dimensions is not included, output includes all values by default.
+#'            Each parameter should be in the form dimN, with N one of \{1, ..., Nº of dimensions\}.
+#'            If one of the dimensions is not included, output includes all values for that dimension.
 #'
-#' @return Dataset for the given indicator.
+#' @return tidy data frame for the given indicator.
+#'
+#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar
+#'
+#' @seealso [ineptR::get_dim_values()] can be used to identify the values to be passed to *dimN* parameters, in the variable categ_cod. \cr
+#' See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this article} for further clarification on how to obtain only a subset of the data.
+#'
 #' @export
 #'
 #' @examplesIf FALSE
-#' get_ine_data("0010003") # A simple example
+#' #A simple example. Returns the complete dataset.
+#' get_ine_data("0010003")
+#' # A more complex example. Returns a subset of the dataset.
 #' get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
-#'              dim4 = c(1,19), dim5 = "TLES") # A more complex example
+#'              dim4 = c(1,19), dim5 = "TLES")
 get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cells = 30000, ...) {
   dim_1 <- NULL
   #get the urls
   myurls <- get_api_urls(indicator, max_cells, ...)
-
   #TODO:
   ## Print the number of records extracted in each call
 
   #start counters to estimate extraction duration
   if (expected.duration) {
-    start_time <- proc.time()
-    sstart_time <- proc.time()
+    pb <- txtProgressBar(min = 0, max = length(myurls), style = 3, width = round(getOption("width")/4)) #initialize progress bar
+    #start_time <- proc.time()
+    global_time <- proc.time()
   }
 
   #!!!!!!!
@@ -45,25 +54,37 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
     dplyr::mutate(id = dplyr::row_number()) %>%
     purrr::pmap_dfr(function(...) {
       current <- tibble::tibble(...)
+        # do stuff and access content from current row with "current"
+
 
       if (expected.duration) {
-        # do stuff and access content from current row with "current"
-        print(sprintf("Extracting part %s of %s", current$id, length(myurls)))
+        setTxtProgressBar(pb,current$id)
+        #aa <- sprintf("Extracting part %s of %s", current$id, length(myurls))
 
         #last_execution_duration <- as.double(proc.time() - start_time)[[3]] # single execution duration
 
         if (current$id!=1) {
-          average_execution_duration <- as.double(((proc.time() - sstart_time)[[3]])/current$id)
+          est <- as.double(((proc.time() - global_time)[[3]])/current$id)
         }
         else {
-          average_execution_duration <- Inf
+          est <- Inf
           }
 
         #expected remaining duration
-        expected_remaining_duration <- (length(myurls) - current$id) * average_execution_duration
-        print(sprintf("Expected remaining duration: %.1f seconds", expected_remaining_duration))
-        start_time <<- proc.time() # reset execution counter
+        remaining <- (length(myurls) - current$id) * est
+        #bb <- sprintf("Expected remaining duration: %.1f seconds", remaining)
+        #flush.console()
+        #cat("\n",bb,sep = "\n")
+        #flush.console()
+        #mpb(pb,current$id, length(myurls),remaining)
+        #flush.console()
+        cat(paste(sprintf(" // Output: %s of %s", current$id, length(myurls)),
+                  sprintf(" // Remaining: %.1f seconds", remaining),
+                  sep = ""))
+
+        #start_time <<- proc.time() # reset execution counter
       }
+
       e <- new.env()
       # return
       current$value %>%
@@ -80,9 +101,12 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
 
   #rm(temp_dim1_01348531)
   #rm(e)
+
   #total duration
   if (expected.duration) {
-    print(sprintf("Total duration: %.1f seconds", as.double(proc.time() - sstart_time)[[3]]))
+    cat(sprintf("Total duration: %.1f seconds", as.double(proc.time() - global_time)[[3]]))
+    close(pb)
   }
   return(ret_data)
 }
+

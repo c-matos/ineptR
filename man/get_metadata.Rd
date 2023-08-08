@@ -15,8 +15,8 @@ get_metadata(indicator, lang = "PT")
 API response body as list.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-\code{get_metadata()} calls the metadata API.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
+Get metadata for the selected indicator
 
 Be aware that this function will still return a value and not throw an error if the indicator does not exist.
 }

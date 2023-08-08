@@ -21,11 +21,11 @@ library(purrr)
 The [main page](https://c-matos.github.io/ineptR) shows how to use the function `get_ine_data()` to get the complete dataset from a given indicator.  
 However, some use cases may require only a subset of the available data. 
 To tackle such situations, the function `get_ine_data()` accepts parameters where the user can specify the desired values for each dimension.  
-These parameters come in the form *"dimN"* (e.g. dim1, dim2, ...), up to the number of available dimensions for the selected indicator (use `ineptR::get_dim_info()` to see the available dimensions).
+These parameters come in the form *"dimN"* (e.g. dim1, dim2, ...), up to the number of available dimensions for the selected indicator (use `get_dim_info()` to see the available dimensions).
 
 Some example use cases are provided below.
 
-## Cross-sectional analysis
+## Cross-sectional analysis (Only a subset of the data)
 
 Suppose you want to analyse only the most recent population data. The indicator "0008273" has population data. Let's check what dimensions are available and explore the indicator:
 
@@ -43,7 +43,7 @@ What is the most recent time period?
 
 *Alternative 1*: Using the `get_metadata()` function.  
 ```{r}
-indicator_metadata <- ineptR::get_metadata(indicator, lang = "EN")
+indicator_metadata <- get_metadata(indicator, lang = "EN")
 indicator_metadata
 
 most_recent_year <- indicator_metadata %>% 
@@ -86,7 +86,7 @@ The advantage of this approach is that it shows the *categ_cod* variable, that w
 We see `r nrow(dplyr::filter(dimension_values,dim_num==2))` geographic units, including NUTS 1, NUTS 2, NUTS 3 and municipalities as the most disaggregated level. MF, M and F sexes are available. Five year age groups are available.
 
 Now suppose we want to compare population size across NUTS 3, for all available sexes and age groups. (Note that all NUTS 3 have a 3-character *categ_cod*).  
-The `ineptR::get_ine_data()` function conveniently allows us to only request the desired data:
+The `get_ine_data()` function conveniently allows us to only request the desired data:
 ```{r}
 
 #Get the id of the latest time period
@@ -110,7 +110,7 @@ indicator_output <- get_ine_data(indicator,
 ```
 
 <span style="color: darkred;">Important:</span>  
-The parameters passed to `ineptR::get_ine_data()` are a subset from the **categ_cod** values that we obtained with the `ineptR::get_dim_values()`.  
+The parameters passed to `get_ine_data()` are a subset from the **categ_cod** values that we obtained with the `:get_dim_values()`.  
 In this example we passed a subset of values only to dim1 and dim2, however we can use this approach to any combination of the available dimensions.
 
 ## Example with a large and cumbersome dataset
@@ -118,10 +118,10 @@ In this example we passed a subset of values only to dim1 and dim2, however we c
 The indicator *Deaths (No.) by Place of residence (NUTS - 2013), Sex, Age group and Death cause (European short-list); Annual (6)*, with ID "0008206" is a very large dataset:
 ```{r}
 indicator <- "0008206"
-ineptR::get_dim_info(indicator, lang = "EN")
+get_dim_info(indicator, lang = "EN")
 
 #Check number of unique values by dimension
-unique_values <- ineptR::get_dim_values(indicator, lang = "EN") %>% 
+unique_values <- get_dim_values(indicator, lang = "EN") %>% 
   group_by(dim_num) %>% 
   summarise(unique_values = n())
 

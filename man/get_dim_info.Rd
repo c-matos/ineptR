@@ -16,12 +16,12 @@ A data frame with dim_num (dimension number), abrv (dimension description) and v
 A fourth column 'nota_dsg' is present for some indicators, with additional notes about the dimensions.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
+Get information about the dimensions of a given indicator
 }
 \details{
-If the indicator is not valid, returns a 1x1 tibble with a column named 'value'
-stating "(PT) O codigo do indicador nao existe. / (EN) The indicator code does not exist."
-\cr Calling \code{is_indicator_valid()} before using this function is recommended.
+If the indicator is not valid, returns "(PT) O codigo do indicador nao existe. / (EN) The indicator code does not exist." \cr
+Calling \code{is_indicator_valid()} before using this function is recommended.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

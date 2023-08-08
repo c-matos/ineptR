@@ -1,8 +1,8 @@
 #' Get indicator metadata
 #'
 #' @description
-#' `r lifecycle::badge('experimental')`
-#' `get_metadata()` calls the metadata API.
+#' `r lifecycle::badge('experimental')` \cr
+#' Get metadata for the selected indicator
 #'
 #' Be aware that this function will still return a value and not throw an error if the indicator does not exist.
 #'
