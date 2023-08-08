@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API. ">
-<title>Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R • ineptR</title>
+<title>Wrapper for Statistics Portugal API • ineptR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -20,7 +20,7 @@
 <link href="deps/Ubuntu-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Wrapper for Statistics Portugal API">
 <meta property="og:description" content="Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API. ">
 <meta property="og:image" content="https://c-matos.github.io/ineptR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -88,7 +88,7 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>The goal of ineptR is to facilitate and automate data extraction from Statistics Portugal (Instituto Nacional de Estatistica - INE, PT) with R.<br>
-It consists mainly of wrapper functions around the <a href="https://www.ine.pt/xportal/xmain?xpid=INE&amp;xpgid=ine_api&amp;INST=322751522" class="external-link">INE API</a>, and some helper functions to inspect metadata.<br>
+It consists mainly of wrapper functions around the INE API, and some helper functions to inspect metadata.<br>
 One limitation of the INE API is that data extraction is limited to 40k data points in each API call. For convenience, this package deals with that limitation internally, and the user can get all the records in a single <code><a href="reference/get_ine_data.html">get_ine_data()</a></code> function call.</p>
 <p>For a basic usage example, keep reading.<br>
 For more in-depth examples, check <code><a href="articles/use_cases.html">vignette("use_cases")</a></code>.</p>
@@ -107,27 +107,30 @@ For more in-depth examples, check <code><a href="articles/use_cases.html">vignet
 <p>This is a basic workflow to inspect and get data from INE.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Load package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://c-matos.github.io/ineptR">ineptR</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://c-matos.github.io/ineptR/">ineptR</a></span><span class="op">)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Navigate to the INE website and identify the desired indicador ID.</li>
 </ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example: </span></span>
+<span><span class="co"># Proportion of domestic budget funded by domestic taxes (%); Annual</span></span>
+<span><span class="co"># Available at: </span></span>
+<span><span class="co"># https://www.ine.pt/xportal/xmain?xpid=INE&amp;xpgid=ine_indicadores&amp;indOcorrCod=0010003&amp;contexto=bd&amp;selTab=tab2&amp;xlang=pt.</span></span></code></pre></div>
 <ul>
-<li>Example: <a href="https://www.ine.pt/xportal/xmain?xpid=INE&amp;xpgid=ine_indicadores&amp;indOcorrCod=0010003&amp;contexto=bd&amp;selTab=tab2&amp;xlang=pt." class="external-link">Proportion of domestic budget funded by domestic taxes (%); Annual</a>
-</li>
 <li>Get the indicator ID from the indOcorrCod query parameter in the URL. In this case the ID is <strong><em>001003</em></strong>
 </li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Confirm that the indicator ID is valid:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Check if indicator is valid</span></span>
 <span><span class="fu"><a href="reference/is_indicator_valid.html">is_indicator_valid</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Inspect metadata:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_metadata.html">get_metadata</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $IndicadorCod</span></span>
 <span><span class="co">#&gt; [1] "0010003"</span></span>
@@ -160,14 +163,14 @@ For more in-depth examples, check <code><a href="articles/use_cases.html">vignet
 <span><span class="co">#&gt; [1] "2022-12-28"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $DataExtracao</span></span>
-<span><span class="co">#&gt; [1] "2023-08-08T17:21:41.568+01:00"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2023-08-08T20:47:52.156+01:00"</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Get information about the dimensions:</li>
 </ol>
 <ul>
 <li>How many dimensions are in this indicator and what are they?</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_dim_info.html">get_dim_info</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span><span class="co">#&gt;   dim_num abrv                            versao</span></span>
@@ -177,7 +180,7 @@ For more in-depth examples, check <code><a href="articles/use_cases.html">vignet
 <ul>
 <li>What are the unique values for each dimension?</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_dim_values.html">get_dim_values</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 15 × 7</span></span>
 <span><span class="co">#&gt;    dim_num cat_id  categ_cod categ_dsg categ_ord categ_nivel value_id        </span></span>
@@ -200,7 +203,7 @@ For more in-depth examples, check <code><a href="articles/use_cases.html">vignet
 <ol start="5" style="list-style-type: decimal">
 <li>Get the data:</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_ine_data.html">get_ine_data</a></span><span class="op">(</span><span class="st">"0010003"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    dim_1 geocod   geodsg valor</span></span>
 <span><span class="co">#&gt; 1   2010     PT Portugal 58.31</span></span>
@@ -245,7 +248,7 @@ For more in-depth examples, check <code><a href="articles/use_cases.html">vignet
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Carlos Matos <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1134-0396" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Carlos Matos <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0003-1134-0396" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
