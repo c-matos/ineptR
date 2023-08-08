@@ -16,9 +16,9 @@ TRUE if indicator exists, otherwise FALSE.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
-#' Check if indicator exists
-
-Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
+Check if the indicator exists and is callable via the INE API. \n
+Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. \n
+Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

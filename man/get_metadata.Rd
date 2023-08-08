@@ -16,7 +16,7 @@ API response body as list.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
-Get metadata for the selected indicator
+Get metadata for the selected indicator from the INE API
 
 Be aware that this function will still return a value and not throw an error if the indicator does not exist.
 }
