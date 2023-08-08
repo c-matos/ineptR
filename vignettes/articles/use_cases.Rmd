@@ -18,7 +18,7 @@ library(stringr)
 library(purrr)
 ```
 
-The [main page](https://c-matos.github.io/ineptR) shows how to use the function `get_ine_data()` to get the complete dataset from a given indicator.  
+The [main page](https://c-matos.github.io/ineptR/) shows how to use the function `get_ine_data()` to get the complete dataset from a given indicator.  
 However, some use cases may require only a subset of the available data. 
 To tackle such situations, the function `get_ine_data()` accepts parameters where the user can specify the desired values for each dimension.  
 These parameters come in the form *"dimN"* (e.g. dim1, dim2, ...), up to the number of available dimensions for the selected indicator (use `get_dim_info()` to see the available dimensions).

@@ -13,9 +13,8 @@
 The goal of ineptR is to facilitate and automate data extraction from
 Statistics Portugal (Instituto Nacional de Estatistica - INE, PT) with
 R.  
-It consists mainly of wrapper functions around the [INE
-API](https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522),
-and some helper functions to inspect metadata.  
+It consists mainly of wrapper functions around the INE API, and some
+helper functions to inspect metadata.  
 One limitation of the INE API is that data extraction is limited to 40k
 data points in each API call. For convenience, this package deals with
 that limitation internally, and the user can get all the records in a
@@ -45,8 +44,9 @@ library(ineptR)
 
 1.  Navigate to the INE website and identify the desired indicador ID.
 
-- Example: [Proportion of domestic budget funded by domestic taxes (%);
-  Annual](https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2&xlang=pt.)
+- Example: Proportion of domestic budget funded by domestic taxes (%);
+  Annual. Available at:
+  <https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2&xlang=pt>.
 - Get the indicator ID from the indOcorrCod query parameter in the URL.
   In this case the ID is ***001003***
 
@@ -93,7 +93,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-08T17:21:41.568+01:00"
+#> [1] "2023-08-08T18:37:45.116+01:00"
 ```
 
 4.  Get information about the dimensions:

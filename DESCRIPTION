@@ -1,8 +1,8 @@
 Package: ineptR
-Title: Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R
+Title: Wrapper for Statistics Portugal API
 Version: 0.1.0
 Authors@R: 
-    person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre"),
+    person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre","cph"),
            comment = c(ORCID = "0000-0003-1134-0396"))
 Description: Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API. 
 License: MIT + file LICENSE
@@ -21,7 +21,7 @@ Imports:
     stringr,
     tibble,
     tidyr
-URL: https://c-matos.github.io/ineptR, https://github.com/c-matos/ineptR
+URL: https://c-matos.github.io/ineptR/, https://github.com/c-matos/ineptR
 Suggests: 
     rmarkdown,
     curl

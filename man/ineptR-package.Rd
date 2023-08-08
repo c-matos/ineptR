@@ -4,7 +4,7 @@
 \name{ineptR-package}
 \alias{ineptR}
 \alias{ineptR-package}
-\title{ineptR: Get data from Statistics Portugal (Instituto Nacional de Estatistica - Portugal) to R}
+\title{ineptR: Wrapper for Statistics Portugal API}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
@@ -13,13 +13,13 @@ Set of wrapper and helper functions to facilitate interaction with the Statistic
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://c-matos.github.io/ineptR}
+  \item \url{https://c-matos.github.io/ineptR/}
   \item \url{https://github.com/c-matos/ineptR}
 }
 
 }
 \author{
-\strong{Maintainer}: Carlos Matos \email{carlosmdmatos@gmail.com} (\href{https://orcid.org/0000-0003-1134-0396}{ORCID})
+\strong{Maintainer}: Carlos Matos \email{carlosmdmatos@gmail.com} (\href{https://orcid.org/0000-0003-1134-0396}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
