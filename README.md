@@ -44,9 +44,13 @@ library(ineptR)
 
 1.  Navigate to the INE website and identify the desired indicador ID.
 
-- Example: Proportion of domestic budget funded by domestic taxes (%);
-  Annual. Available at:
-  <https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2&xlang=pt>.
+``` r
+# Example: 
+# Proportion of domestic budget funded by domestic taxes (%); Annual
+# Available at: 
+# https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2&xlang=pt.
+```
+
 - Get the indicator ID from the indOcorrCod query parameter in the URL.
   In this case the ID is ***001003***
 
@@ -93,7 +97,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-08T18:37:45.116+01:00"
+#> [1] "2023-08-08T20:47:52.156+01:00"
 ```
 
 4.  Get information about the dimensions:
