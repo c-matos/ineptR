@@ -2,9 +2,9 @@
 #'
 #' @description
 #' `r lifecycle::badge('experimental')` \cr
-#' #' Check if indicator exists
-#'
-#' Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
+#' Check if the indicator exists and is callable via the INE API. \cr
+#' Indicator ID can be found in the url under the 'indOcorrCod' query parameter when browsing the website. \n
+#' Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
 #' @param lang One of "PT" or "EN". Default is "PT".
