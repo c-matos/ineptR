@@ -93,7 +93,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-02T17:10:46.383+01:00"
+#> [1] "2023-08-08T17:21:41.568+01:00"
 ```
 
 4.  Get information about the dimensions:

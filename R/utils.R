@@ -15,8 +15,7 @@
 #' @seealso [ineptR::is_indicator_valid()] can be used to check if the indicator is valid before calling this function.
 get_metadata_raw <- function(indicator, lang = "PT") {
   metadata_path <- sprintf("https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=%s&lang=%s", indicator, lang)
-  httr::content(httr::GET(metadata_path), as = 'parsed')[[1]]
-  #jsonlite::fromJSON(txt = metadata_path, simplifyVector = F)[[1]]
+  jsonlite::fromJSON(txt = metadata_path, simplifyVector = F)[[1]]
 }
 
 #Calculate the number of dimensions in the indicator
@@ -48,8 +47,6 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
   opt_names <- stringr::str_to_sentence(names(list(...))) #convert parameter names to sentence case
   names(opt) <- opt_names
   opt <- append(opt, values = c(op=2, varcd=indicator, lang=lang))
-
-  #TODO: Convert the dim names to sentence case above, as a precaution. (Is it done? To confirm)
 
   #get number of dimensions
   num_dims <- calc_num_dims(indicator) #get number of dimensions
@@ -106,10 +103,6 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     remaining_dims <- dims_len %>%
       dplyr::filter(!dims_len$dim_num %in% c(1, user_dims))
 
-    #Number of remaining dims.
-    #Not bein used. to delete later
-    #num_remaining_dims <- nrow(remaining_dims)
-
     temp_out <- c()
     for (i in as.integer(remaining_dims$dim_num)) {
       mystat <- remaining_dims %>%
@@ -118,19 +111,10 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
         as.integer()
 
       temp_out <- c(temp_out, stats::setNames(mystat, i))
-
-      # #store the value in a named vector, with dimname=mystat
-      # # ?????
-      # if (mystat<=max_cells) {
-      #
-      # }
     }
 
-    temp_out <- temp_out[temp_out<=max_cells] #Do a check here. If length == 0, then must check for removing 2 dims simultaneously, etc...Maybe not needed, since checked max_cells above.
-    # temp_out <- temp_out[temp_out==max(temp_out)]
-    # dim_to_loop_over <- names(temp_out) # get the dim to loop over
-    extra_dims_to_loop_over <- c(names(which.max(temp_out))) # results of the calculation. Assumes dim1 was dealt with earlier and user_dims are already in opt
-
+    temp_out <- temp_out[temp_out<=max_cells]
+    extra_dims_to_loop_over <- c(names(which.max(temp_out)))
     #Now get all the values of the desired dim, and add them to opt
     for (d in extra_dims_to_loop_over) {
       opt <- append(x = opt,
@@ -140,7 +124,6 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
                       as.list() %>%
                       magrittr::set_names(paste0("Dim",d)))
     }
-    #}
   }
 
   #Base case, assuming everything is passed correctly
@@ -155,10 +138,4 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     purrr::map_chr(~ httr::modify_url(baseurl, query=.x) )
 
   return(urls)
-
-  #TODO:
-  ## What if indicator has 2 dims and user only specifies one?
-  ### Maybe i can assume that if only two dims, always less than 40k cells??
-  #TODO: TEST THIS ASSUMPTION FOR THE ENTIRE INE CATALOG
-
 }

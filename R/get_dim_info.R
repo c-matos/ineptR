@@ -1,13 +1,13 @@
 #' Get information about the dimensions of a given indicator
 #'
 #' @description
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('experimental')` \cr
+#' Get information about the dimensions of a given indicator
 #'
 #'
 #' @details
-#' If the indicator is not valid, returns a 1x1 tibble with a column named 'value'
-#' stating "(PT) O codigo do indicador nao existe. / (EN) The indicator code does not exist."
-#' \cr Calling `is_indicator_valid()` before using this function is recommended.
+#' If the indicator is not valid, returns "(PT) O codigo do indicador nao existe. / (EN) The indicator code does not exist." \cr
+#' Calling `is_indicator_valid()` before using this function is recommended.
 #'
 #' @param indicator INE indicator ID as a 7 character string. Example: "0010003".
 #' @param lang One of "PT" or "EN". Default is "PT".
@@ -34,7 +34,6 @@ get_dim_info <- function(indicator, lang="PT") {
       magrittr::extract2("Sucesso") %>%
       magrittr::use_series("Falso") %>%
       magrittr::extract2(1) %>%
-      magrittr::use_series("Msg") %>%
-      tibble::as_tibble()
+      magrittr::use_series("Msg")
   }
 }

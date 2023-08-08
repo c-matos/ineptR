@@ -23,23 +23,29 @@ get_ine_data(
 Default value of 30000}
 
 \item{...}{Values for each Dimension of the indicator.
-Each parameter should be in the form DimN, with N one of \{1, ..., Nº of dimensions\}.
-If one of the dimensions is not included, output includes all values by default.}
+Each parameter should be in the form dimN, with N one of \{1, ..., Nº of dimensions\}.
+If one of the dimensions is not included, output includes all values for that dimension.}
 }
 \value{
-Dataset for the given indicator.
+tidy data frame for the given indicator.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
-This is the function that actually performs the API call.
+Return tidy data frames from Instituto Nacional de Estatística API
 }
 \details{
 Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_ine_data("0010003") # A simple example
+#A simple example. Returns the complete dataset.
+get_ine_data("0010003")
+# A more complex example. Returns a subset of the dataset.
 get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
-             dim4 = c(1,19), dim5 = "TLES") # A more complex example
+             dim4 = c(1,19), dim5 = "TLES")
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{\link[=get_dim_values]{get_dim_values()}} can be used to identify the values to be passed to \emph{dimN} parameters, in the variable categ_cod. \cr
+See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this article} for further clarification on how to obtain only a subset of the data.
 }
