@@ -105,11 +105,10 @@ accepts parameters where the user can specify the desired values for
 each dimension.<br>
 These parameters come in the form <em>“dimN”</em> (e.g. dim1, dim2, …),
 up to the number of available dimensions for the selected indicator (use
-<code><a href="../reference/get_dim_info.html">ineptR::get_dim_info()</a></code> to see the available
-dimensions).</p>
+<code><a href="../reference/get_dim_info.html">get_dim_info()</a></code> to see the available dimensions).</p>
 <p>Some example use cases are provided below.</p>
 <div class="section level2">
-<h2 id="cross-sectional-analysis">Cross-sectional analysis<a class="anchor" aria-label="anchor" href="#cross-sectional-analysis"></a>
+<h2 id="cross-sectional-analysis-only-a-subset-of-the-data">Cross-sectional analysis (Only a subset of the data)<a class="anchor" aria-label="anchor" href="#cross-sectional-analysis-only-a-subset-of-the-data"></a>
 </h2>
 <p>Suppose you want to analyse only the most recent population data. The
 indicator “0008273” has population data. Let’s check what dimensions are
@@ -133,7 +132,7 @@ Other dimensions vary by indicator. In this case dimension 3 is
 <p><em>Alternative 1</em>: Using the <code><a href="../reference/get_metadata.html">get_metadata()</a></code>
 function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">indicator_metadata</span> <span class="op">&lt;-</span> <span class="fu">ineptR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_metadata.html">get_metadata</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">indicator_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_metadata.html">get_metadata</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span></span>
 <span><span class="va">indicator_metadata</span></span>
 <span><span class="co">#&gt; $IndicadorCod</span></span>
 <span><span class="co">#&gt; [1] "0008273"</span></span>
@@ -166,7 +165,7 @@ function.</p>
 <span><span class="co">#&gt; [1] "2023-06-15"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $DataExtracao</span></span>
-<span><span class="co">#&gt; [1] "2023-08-04T11:18:56.661+01:00"</span></span>
+<span><span class="co">#&gt; [1] "2023-08-08T17:34:39.975+01:00"</span></span>
 <span></span>
 <span><span class="va">most_recent_year</span> <span class="op">&lt;-</span> <span class="va">indicator_metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html" class="external-link">pluck</a></span><span class="op">(</span><span class="st">"UltimoPeriodo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -299,8 +298,8 @@ available. Five year age groups are available.</p>
 <p>Now suppose we want to compare population size across NUTS 3, for all
 available sexes and age groups. (Note that all NUTS 3 have a 3-character
 <em>categ_cod</em>).<br>
-The <code><a href="../reference/get_ine_data.html">ineptR::get_ine_data()</a></code> function conveniently allows us
-to only request the desired data:</p>
+The <code><a href="../reference/get_ine_data.html">get_ine_data()</a></code> function conveniently allows us to only
+request the desired data:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#Get the id of the latest time period</span></span>
@@ -325,9 +324,9 @@ to only request the desired data:</p>
 <span>                                 dim1 <span class="op">=</span> <span class="va">latest_year_id</span>, </span>
 <span>                                 dim2 <span class="op">=</span> <span class="va">nuts3_id</span><span class="op">)</span></span></code></pre></div>
 <p><span style="color: darkred;">Important:</span><br>
-The parameters passed to <code><a href="../reference/get_ine_data.html">ineptR::get_ine_data()</a></code> are a
-subset from the <strong>categ_cod</strong> values that we obtained with
-the <code><a href="../reference/get_dim_values.html">ineptR::get_dim_values()</a></code>.<br>
+The parameters passed to <code><a href="../reference/get_ine_data.html">get_ine_data()</a></code> are a subset from
+the <strong>categ_cod</strong> values that we obtained with the
+<code>:get_dim_values()</code>.<br>
 In this example we passed a subset of values only to dim1 and dim2,
 however we can use this approach to any combination of the available
 dimensions.</p>
@@ -340,7 +339,7 @@ Sex, Age group and Death cause (European short-list); Annual (6)</em>,
 with ID “0008206” is a very large dataset:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">indicator</span> <span class="op">&lt;-</span> <span class="st">"0008206"</span></span>
-<span><span class="fu">ineptR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_dim_info.html">get_dim_info</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_dim_info.html">get_dim_info</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
 <span><span class="co">#&gt;   dim_num abrv                              versao nota_dsg                     </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span></span>
@@ -351,7 +350,7 @@ with ID “0008206” is a very large dataset:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 5       Death cause (European short-list) 00204  <span style="color: #949494;">"</span>The \"European short-list f…</span></span>
 <span></span>
 <span><span class="co">#Check number of unique values by dimension</span></span>
-<span><span class="va">unique_values</span> <span class="op">&lt;-</span> <span class="fu">ineptR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_dim_values.html">get_dim_values</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">unique_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_dim_values.html">get_dim_values</a></span><span class="op">(</span><span class="va">indicator</span>, lang <span class="op">=</span> <span class="st">"EN"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">dim_num</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>unique_values <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
