@@ -39,13 +39,13 @@ Extraction time can be very high (many hours) for indicators with many dimension
 \examples{
 #A simple example. Returns the complete dataset.
 get_ine_data("0011823")
-\donttest{
 # A more complex example. Returns a subset of the dataset.
+\donttest{
 get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
              dim4 = c(1,19), dim5 = "TLES")
 }
 }
 \seealso{
-\code{\link[=get_dim_values]{get_dim_values()}} can be used to identify the values to be passed to \emph{dimN} parameters, in the variable categ_cod. \cr
-See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this article} for further clarification on how to obtain only a subset of the data.
+\code{\link[=get_dim_values]{get_dim_values()}} can be used to identify the values to be passed to \emph{dimN} parameters, in the variable categ_cod.
+See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this vignette} for further clarification on how to obtain only a subset of the data.
 }
