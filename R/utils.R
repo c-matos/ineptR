@@ -15,7 +15,8 @@
 #' @seealso [ineptR::is_indicator_valid()] can be used to check if the indicator is valid before calling this function.
 get_metadata_raw <- function(indicator, lang = "PT") {
   metadata_path <- sprintf("https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=%s&lang=%s", indicator, lang)
-  jsonlite::fromJSON(txt = metadata_path, simplifyVector = F)[[1]]
+  httr2::request(metadata_path) %>% httr2::req_perform() %>% httr2::resp_body_json() %>% magrittr::extract2(1)
+  #jsonlite::fromJSON(txt = metadata_path, simplifyVector = F)[[1]]
 }
 
 #Calculate the number of dimensions in the indicator

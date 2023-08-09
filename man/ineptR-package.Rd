@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API (\url{https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522&xlang=en.html}).
+Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API (\url{https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522&xlang=en}).
 }
 \seealso{
 Useful links:
