@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: 
     person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre","cph"),
            comment = c(ORCID = "0000-0003-1134-0396"))
-Description: Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API. 
+Description: Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API (<https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522&xlang=en.html>). 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

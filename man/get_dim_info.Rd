@@ -24,8 +24,5 @@ If the indicator is not valid, returns "(PT) O codigo do indicador nao existe. /
 Calling \code{is_indicator_valid()} before using this function is recommended.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-get_dim_info("0010003")
-\dontshow{\}) # examplesIf}
+get_dim_info("0011823", lang = "EN")
 }

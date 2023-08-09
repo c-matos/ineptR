@@ -36,13 +36,11 @@ calc_dims_length <- function(indicator, lang="PT") {
 }
 
 
-#Might be an internal function, that checks the values the user wants and chooses the best option to loop over them
-##Some notes: "dim" url parameter is NOT case sensitive. "dim" order in the url DOES NOT matter
-## NB: When dim1 is not passed it assumes the most recent one!!!
+#Logic to deal with the limit of 40k cells per API call
 get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
   dim_num <- cat_id <- n <- dim_1 <- NULL
 
-  #unpack the ellipsis into a list
+  #unpack the ellipsis
   opt <- list(...)
   opt_names <- stringr::str_to_sentence(names(list(...))) #convert parameter names to sentence case
   names(opt) <- opt_names
@@ -53,7 +51,6 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
 
   #Get number of unique values in each dimension
   dims_len <- calc_dims_length(indicator)
-
 
   # ------------------#
   # --- VALIDATION ---#

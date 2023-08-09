@@ -17,10 +17,8 @@
 #' @importFrom rlang .data
 #' @export
 #'
-#' @examplesIf FALSE
-#'
-#' get_dim_info("0010003")
-#'
+#' @examples
+#' get_dim_info("0011823", lang = "EN")
 
 get_dim_info <- function(indicator, lang="PT") {
   if (is_indicator_valid(indicator)) {

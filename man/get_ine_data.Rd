@@ -37,13 +37,13 @@ Return tidy data frames from Instituto Nacional de Estatística API
 Extraction time can be very high (many hours) for indicators with many dimensions and/or many unique values. E.g. Indicator "0008206 - Deaths by Place of residence, Sex, Age group and Death cause, Annual" will take many hours to extract.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #A simple example. Returns the complete dataset.
-get_ine_data("0010003")
+get_ine_data("0011823")
+\donttest{
 # A more complex example. Returns a subset of the dataset.
 get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
              dim4 = c(1,19), dim5 = "TLES")
-\dontshow{\}) # examplesIf}
+}
 }
 \seealso{
 \code{\link[=get_dim_values]{get_dim_values()}} can be used to identify the values to be passed to \emph{dimN} parameters, in the variable categ_cod. \cr

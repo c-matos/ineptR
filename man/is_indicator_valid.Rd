@@ -21,7 +21,5 @@ Indicator ID can be found in the url under the 'indOcorrCod' query parameter whe
 Example: https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0010003&contexto=bd&selTab=tab2
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-is_indicator_valid("0010003")
-\dontshow{\}) # examplesIf}
+is_indicator_valid("0011823")
 }
