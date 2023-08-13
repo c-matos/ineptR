@@ -15,6 +15,7 @@ Useful links:
 \itemize{
   \item \url{https://c-matos.github.io/ineptR/}
   \item \url{https://github.com/c-matos/ineptR}
+  \item Report bugs at \url{https://github.com/c-matos/ineptR/issues}
 }
 
 }
