@@ -22,7 +22,14 @@
 #' get_dim_values("0011823")
 get_dim_values <- function(indicator, lang = "PT") {
   if (is_indicator_valid(indicator)) {
-    get_metadata_raw(indicator = indicator, lang = lang) %>%
+
+    metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+
+    if (is.null(metadata)) {
+      return(invisible(NULL))
+    }
+
+    metadata %>%
       magrittr::extract2("Dimensoes") %>%
       magrittr::extract2("Categoria_Dim") %>%
       tibble::as_tibble_col() %>%
@@ -30,10 +37,18 @@ get_dim_values <- function(indicator, lang = "PT") {
       tidyr::unnest(.data$value) %>%
       tidyr::unnest_wider(.data$value)
   } else {
-    get_metadata_raw(indicator = indicator, lang = lang) %>%
+    metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+
+    if (is.null(metadata)) {
+      return(invisible(NULL))
+    }
+
+    message(metadata %>%
       magrittr::extract2("Sucesso") %>%
       magrittr::use_series("Falso") %>%
       magrittr::extract2(1) %>%
-      magrittr::use_series("Msg")
+      magrittr::use_series("Msg"))
+
+    return(invisible(NULL))
   }
 }

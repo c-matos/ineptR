@@ -19,6 +19,9 @@
 #'
 get_metadata <- function(indicator, lang = "PT") {
   temp_metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+  if (is.null(temp_metadata)) {
+    return(invisible(NULL))
+  }
   temp_metadata["Dimensoes"] <- NULL
   temp_metadata["Sucesso"] <- NULL
   return(temp_metadata)

@@ -22,16 +22,30 @@
 
 get_dim_info <- function(indicator, lang="PT") {
   if (is_indicator_valid(indicator)) {
-    get_metadata_raw(indicator = indicator, lang = lang) %>%
+
+    metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+
+    if (is.null(metadata)) {
+      return(invisible(NULL))
+    }
+
+    metadata %>%
       magrittr::extract2("Dimensoes") %>%
       magrittr::extract2("Descricao_Dim") %>%
       tibble::as_tibble_col() %>%
       tidyr::unnest_wider(col = .data$value)
   } else {
-    get_metadata_raw(indicator = indicator, lang = lang) %>%
-      magrittr::extract2("Sucesso") %>%
-      magrittr::use_series("Falso") %>%
-      magrittr::extract2(1) %>%
-      magrittr::use_series("Msg")
+    return("(PT) O c\u00F3digo do indicador n\u00E3o existe. / (EN) The indicator code does not exist.")
+    # metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+    #
+    # if (is.null(metadata)) {
+    #   return(invisible(NULL))
+    # }
+    #
+    # metadata %>%
+    #   magrittr::extract2("Sucesso") %>%
+    #   magrittr::use_series("Falso") %>%
+    #   magrittr::extract2(1) %>%
+    #   magrittr::use_series("Msg")
   }
 }

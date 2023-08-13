@@ -40,6 +40,11 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
   dim_1 <- NULL
   #get the urls
   myurls <- get_api_urls(indicator, max_cells, ...)
+
+  if (is.null(myurls)) {
+    return(invisible(NULL))
+  }
+
   #TODO:
   ## Print the number of records extracted in each call
 

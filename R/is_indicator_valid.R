@@ -16,5 +16,8 @@
 #' is_indicator_valid("0011823")
 is_indicator_valid <- function(indicator, lang="PT") {
   metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+  if (is.null(metadata)) {
+    return(invisible(NULL))
+  }
   return(!is.null(metadata$Sucesso$Verdadeiro))
 }

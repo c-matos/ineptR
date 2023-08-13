@@ -12,7 +12,7 @@ get_metadata_raw(indicator, lang = "PT")
 \item{lang}{Only "PT" implemented.}
 }
 \value{
-API response body as list.
+API response body as list. Returns NULL with an informative message if no internet connection, timeout or HTTP error.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

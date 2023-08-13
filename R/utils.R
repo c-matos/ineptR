@@ -10,19 +10,50 @@
 #' @param lang Only "PT" implemented.
 #'
 #' @keywords internal
-#' @return API response body as list.
+#' @return API response body as list. Returns NULL with an informative message if no internet connection, timeout or HTTP error.
 #'
 #' @seealso [ineptR::is_indicator_valid()] can be used to check if the indicator is valid before calling this function.
 get_metadata_raw <- function(indicator, lang = "PT") {
-  metadata_path <- sprintf("https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=%s&lang=%s", indicator, lang)
-  httr2::request(metadata_path) %>% httr2::req_perform() %>% httr2::resp_body_json() %>% magrittr::extract2(1)
+
+  #Move the parameters to a list to splice later
+  params <- list(
+    varcd = indicator,
+    lang = lang
+  )
+  baseurl <- "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp"
+
+  #metadata_path <- sprintf("https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=%s&lang=%s", indicator, lang)
+  #httr2::request(metadata_path) %>% httr2::req_perform() %>% httr2::resp_body_json() %>% magrittr::extract2(1)
   #jsonlite::fromJSON(txt = metadata_path, simplifyVector = F)[[1]] #Fails on macos-latest in R CMD check
+
+  req <- httr2::request(base_url = baseurl) %>%
+    httr2::req_url_query(!!!params) %>%
+    httr2::req_user_agent("ineptR (https://c-matos.github.io/ineptR/)") %>%
+    httr2::req_error(is_error = ~FALSE)  #Return message instead of error
+
+  #Validates no internet connection, timeout errors and HTTP errors
+  resp <- gracefully_fail(req)
+
+  #Select only the desired part of the output
+  metadata_raw <- resp %>%
+    httr2::resp_body_json() %>%
+    magrittr::extract2(1) # {\(x) x[[1]]}() --> equivalent, but compatible with base pipe
+
+  #Return the resp to avoid duplicate calls. This is an internal function
+  return(metadata_raw) #list(resp = resp, meta = metadata_raw)
 }
+
 
 #Calculate the number of dimensions in the indicator
 #Will be used for validation purposes
 calc_num_dims <- function(indicator, lang="PT") {
-  get_metadata_raw(indicator = indicator, lang = lang) %>%
+  metadata <- get_metadata_raw(indicator = indicator, lang = lang)
+
+  if (is.null(metadata)) {
+    return(invisible(NULL))
+  }
+
+  metadata %>%
     magrittr::use_series("Dimensoes") %>%
     magrittr::extract2(1) %>%
     length()
@@ -31,7 +62,14 @@ calc_num_dims <- function(indicator, lang="PT") {
 #Calculate the number of unique values in each dimension
 calc_dims_length <- function(indicator, lang="PT") {
   dim_num <- NULL
-  get_dim_values(indicator) %>%
+
+  dim_values <- get_dim_values(indicator)
+
+  if (is.null(dim_values)) {
+    return(invisible(NULL))
+  }
+
+  dim_values %>%
     dplyr::group_by(dim_num) %>%
     dplyr::tally()
 }
@@ -50,8 +88,23 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
   #get number of dimensions
   num_dims <- calc_num_dims(indicator) #get number of dimensions
 
+  if (is.null(num_dims)) {
+    return(invisible(NULL))
+  }
+
   #Get number of unique values in each dimension
   dims_len <- calc_dims_length(indicator)
+
+  if (is.null(dims_len)) {
+    return(invisible(NULL))
+  }
+
+  dim_values <- get_dim_values(indicator)
+
+  if (is.null(dim_values)) {
+    return(invisible(NULL))
+  }
+
 
   # ------------------#
   # --- VALIDATION ---#
@@ -72,7 +125,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
 
   #Check if user included dim1. If not, loop over all possible dim1 values
   if (!"Dim1" %in% opt_names) {
-    my_dim1 <- get_dim_values(indicator) %>%
+    my_dim1 <- dim_values %>%
       dplyr::filter(dim_num == 1) %>%
       dplyr::select(cat_id) %>%
       as.list() %>%
@@ -116,7 +169,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     #Now get all the values of the desired dim, and add them to opt
     for (d in extra_dims_to_loop_over) {
       opt <- append(x = opt,
-                    values = get_dim_values(indicator) %>%
+                    values = dim_values %>%
                       dplyr::filter(dim_num == d) %>%
                       dplyr::select(cat_id) %>%
                       as.list() %>%
@@ -136,4 +189,38 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     purrr::map_chr(~ httr::modify_url(baseurl, query=.x) )
 
   return(urls)
+}
+
+
+gracefully_fail <- function(request) {
+  #Fails gracefully to comply with CRAN policy
+  try_GET <- function(request) {
+    tryCatch(
+      resp <- request %>%
+        httr2::req_perform(),
+      error = function(e) conditionMessage(e),
+      warning = function(w) conditionMessage(w)
+    )
+  }
+  is_response <- function(x) {
+    class(x) == "httr2_response"
+  }
+
+  # First check internet connection
+  if (!curl::has_internet()) {
+    message("No internet connection.")
+    return(invisible(NULL))
+  }
+  # Then try for timeout problems
+  resp <- try_GET(request)
+  if (!is_response(resp)) {
+    message(resp)
+    return(invisible(NULL))
+  }
+  # Then stop if status > 400
+  if (httr2::resp_status(resp)>=400) {
+    message(paste(httr2::resp_status(resp), httr2::resp_status_desc(resp), sep = " - "))
+    return(invisible(NULL))
+  }
+  resp
 }
