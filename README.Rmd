@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version-last-release/ineptR?color=blue)](https://CRAN.R-project.org/package=ineptR)
 [![R-CMD-check](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -34,8 +35,9 @@ For more in-depth examples, check `vignette("use_cases")`.
 You can install the development version of ineptR from [GitHub](https://github.com/) with:
 
 ``` r
+install.packages("ineptR") #Release version, from CRAN
 # install.packages("devtools")
-devtools::install_github("c-matos/ineptR")
+devtools::install_github("c-matos/ineptR") #Development version, from GitHub
 ```
 
 ## Usage

@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version-last-release/ineptR?color=blue)](https://CRAN.R-project.org/package=ineptR)
 [![R-CMD-check](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -29,8 +31,9 @@ You can install the development version of ineptR from
 [GitHub](https://github.com/) with:
 
 ``` r
+install.packages("ineptR") #Release version, from CRAN
 # install.packages("devtools")
-devtools::install_github("c-matos/ineptR")
+devtools::install_github("c-matos/ineptR") #Development version, from GitHub
 ```
 
 ## Usage
@@ -97,7 +100,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-08T20:47:52.156+01:00"
+#> [1] "2023-08-14T16:46:30.405+01:00"
 ```
 
 4.  Get information about the dimensions:
