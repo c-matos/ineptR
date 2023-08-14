@@ -63,7 +63,6 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
       current <- tibble::tibble(...)
         # do stuff and access content from current row with "current"
 
-
       if (expected.duration) {
         setTxtProgressBar(pb,current$id)
         #aa <- sprintf("Extracting part %s of %s", current$id, length(myurls))
@@ -79,30 +78,33 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
 
         #expected remaining duration
         remaining <- (length(myurls) - current$id) * est
-        #bb <- sprintf("Expected remaining duration: %.1f seconds", remaining)
-        #flush.console()
-        #cat("\n",bb,sep = "\n")
-        #flush.console()
-        #mpb(pb,current$id, length(myurls),remaining)
-        #flush.console()
         cat(paste(sprintf(" // Output: %s of %s", current$id, length(myurls)),
                   sprintf(" // Remaining: %.1f seconds", remaining),
                   sep = ""))
-
-        #start_time <<- proc.time() # reset execution counter
       }
 
       e <- new.env()
       # return
-      current$value %>%
-        purrr::map_df(~
-                 jsonlite::fromJSON(txt = .x, simplifyVector = F) %>%
-                 magrittr::extract2(1) %>%
-                 magrittr::use_series("Dados") %T>%
-                 {assign("temp_dim1", names(.), envir = e)} %>%
-                 magrittr::extract2(1) %>%
-                 purrr::map_dfr(data.frame) %>%
-                 dplyr::mutate(dim_1 = e$temp_dim1))
+      ###
+      req <- current$value %>%
+        purrr::map(~httr2::request(base_url = .x) %>%
+              httr2::req_user_agent("ineptR (https://c-matos.github.io/ineptR/)") %>%
+              httr2::req_error(is_error = ~FALSE))
+
+      resp <- req %>% purrr::map(gracefully_fail)
+      if (is.null(resp)) {
+        return(invisible(NULL))
+      }
+      ####
+      resp2 <- resp %>%
+        purrr::map_df(~httr2::resp_body_json(.x) %>%
+              magrittr::extract2(1) %>%
+              magrittr::use_series("Dados") %T>%
+              {assign("temp_dim1", names(.), envir = e)} %>%
+              magrittr::extract2(1) %>%
+              purrr::map_dfr(data.frame) %>%
+              dplyr::mutate(dim_1 = e$temp_dim1))
+      resp2
     }) %>%
     dplyr::relocate(dim_1, .before=1)
 
