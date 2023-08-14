@@ -34,6 +34,10 @@ get_metadata_raw <- function(indicator, lang = "PT") {
   #Validates no internet connection, timeout errors and HTTP errors
   resp <- gracefully_fail(req)
 
+  if (is.null(resp)) {
+    return(invisible(NULL))
+  }
+
   #Select only the desired part of the output
   metadata_raw <- resp %>%
     httr2::resp_body_json() %>%
