@@ -2,27 +2,29 @@ Package: ineptR
 Title: Wrapper for Statistics Portugal API
 Version: 0.2.0
 Authors@R: 
-    person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre","cph"),
+    person("Carlos", "Matos", , "carlosmdmatos@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-1134-0396"))
-Description: Set of wrapper and helper functions to facilitate interaction with the Statistics Portugal (Instituto Nacional de Estatistica - INE) API (<https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522&xlang=en>). 
+Description: Set of wrapper and helper functions to facilitate interaction with
+    the Statistics Portugal (Instituto Nacional de Estatistica - INE) API
+    (<https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_api&INST=322751522&xlang=en>).
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+URL: https://c-matos.github.io/ineptR/, https://github.com/c-matos/ineptR
+BugReports: https://github.com/c-matos/ineptR/issues
 Imports: 
     dplyr,
     httr,
+    httr2,
     lifecycle,
     magrittr,
     purrr,
-    httr2,
     readr,
     rlang,
     stringr,
     tibble,
     tidyr
-URL: https://c-matos.github.io/ineptR/, https://github.com/c-matos/ineptR
 Suggests: 
-    rmarkdown,
-    curl
-BugReports: https://github.com/c-matos/ineptR/issues
+    curl,
+    rmarkdown
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

@@ -196,12 +196,13 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
 }
 
 
-gracefully_fail <- function(request) {
+gracefully_fail <- function(request, path = NULL) {
   #Fails gracefully to comply with CRAN policy
+  #path is used to save directly to disk
   try_GET <- function(request) {
     tryCatch(
       resp <- request %>%
-        httr2::req_perform(),
+        httr2::req_perform(path = path),
       error = function(e) conditionMessage(e),
       warning = function(w) conditionMessage(w)
     )
