@@ -1,6 +1,8 @@
 test_that("Problems return NULL, with a message", {
-  expect_message(get_ine_data("invalid_id"),"The indicator code does not exist")
-  expect_null(get_ine_data("invalid_id"))
+  suppressMessages({
+    expect_message(get_ine_data("invalid_id"),"The indicator code does not exist")
+    expect_null(get_ine_data("invalid_id"))
+  })
 })
 
 test_that("Indicator exists and call succeded", {
@@ -11,13 +13,16 @@ test_that("Indicator exists and call succeded", {
 })
 
 test_that("HTTP errors arre downgraded to messages", {
-  mock_404 <- function(req) {httr2::response(status_code = 404)}
-  mock_503 <- function(req) {httr2::response(status_code = 503)}
-  expect_message(httr2::with_mock(mock_404,get_ine_data("0011823")),"404")
-  expect_message(httr2::with_mock(mock_503,get_ine_data("0011823")),"503")
+  suppressMessages({
+    mock_404 <- function(req) {httr2::response(status_code = 404)}
+    mock_503 <- function(req) {httr2::response(status_code = 503)}
+    expect_message(httr2::with_mock(mock_404,get_ine_data("0011823")),"404")
+    expect_message(httr2::with_mock(mock_503,get_ine_data("0011823")),"503")
+  })
 })
 
 test_that("Duration log succeeds", {
+  skip_on_cran()
   expect_output(get_ine_data("0011823", expected.duration = T),"Output: 1 of")
 })
 
@@ -27,8 +32,8 @@ test_that("User input is correct", {
 })
 
 test_that("Calculations work for request over the API 40k limit", {
+  skip_on_cran()
   expect_gt(nrow(get_ine_data("0008206", dim1 = c("S7A1996"), dim3 = "T", dim5 = "TLES", max_cells = 2000)),5000) #over 40k values returned
   expect_gt(nrow(get_ine_data("0008206", dim1 = c("S7A2020"), dim2 = "PT", dim4 = "T", max_cells = 100)),150) #over 40k values returned
   expect_gt(nrow(get_ine_data("0001001", max_cells = 15)),30) #over 40k values returned
-
 })

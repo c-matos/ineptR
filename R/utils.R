@@ -162,6 +162,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     for (i in as.integer(remaining_dims$dim_num)) {
       mystat <- remaining_dims %>%
         dplyr::filter(!dim_num==i) %>%
+        dplyr::summarise(p = prod(n)) %>%
         as.integer()
 
       temp_out <- c(temp_out, stats::setNames(mystat, i))

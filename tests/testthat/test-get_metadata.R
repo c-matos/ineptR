@@ -1,7 +1,9 @@
 test_that("Problems return NULL, with a message", {
-  #expect_message(get_metadata("invalid_id"))
-  expect_message(get_metadata("invalid_id"),"The indicator code does not exist")
-  expect_null(get_metadata("invalid_id"))
+  suppressMessages({
+    #expect_message(get_metadata("invalid_id"))
+    expect_message(get_metadata("invalid_id"),"The indicator code does not exist")
+    expect_null(get_metadata("invalid_id"))
+  })
 })
 
 test_that("Indicator exists and call succeded", {
@@ -11,10 +13,12 @@ test_that("Indicator exists and call succeded", {
 })
 
 test_that("HTTP errors arre downgraded to messages", {
-  mock_404 <- function(req) {httr2::response(status_code = 404)}
-  mock_503 <- function(req) {httr2::response(status_code = 503)}
-  expect_message(httr2::with_mock(mock_404,get_metadata("0010003")),"404")
-  expect_message(httr2::with_mock(mock_503,get_metadata("0010003")),"503")
+  suppressMessages({
+    mock_404 <- function(req) {httr2::response(status_code = 404)}
+    mock_503 <- function(req) {httr2::response(status_code = 503)}
+    expect_message(httr2::with_mock(mock_404,get_metadata("0010003")),"404")
+    expect_message(httr2::with_mock(mock_503,get_metadata("0010003")),"503")
+  })
 })
 
 

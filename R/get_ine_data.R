@@ -20,6 +20,7 @@
 #'
 #' @return tidy data frame for the given indicator.
 #'
+#' @importFrom magrittr %T>%
 #' @importFrom utils txtProgressBar
 #' @importFrom utils setTxtProgressBar
 #'
@@ -37,7 +38,7 @@
 #'              dim4 = c(1,19), dim5 = "TLES")
 #' }
 get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cells = 30000, ...) {
-  dim_1 <- NULL
+  . <- dim_1 <- NULL
   #get the urls
   myurls <- get_api_urls(indicator, max_cells, ...)
 
