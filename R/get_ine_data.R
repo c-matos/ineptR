@@ -25,7 +25,7 @@
 #' @importFrom utils setTxtProgressBar
 #'
 #' @seealso [ineptR::get_dim_values()] can be used to identify the values to be passed to *dimN* parameters, in the variable categ_cod.
-#'  See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this vignette} for further clarification on how to obtain only a subset of the data.
+#'  See \href{https://c-matos.github.io/ineptR/articles/use_cases.html}{this vignette} for further clarification on how to obtain only a subset of the data.
 #'
 #' @export
 #'

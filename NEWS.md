@@ -1,3 +1,7 @@
+# ineptR (development version)
+* Added unit testing and codecov integration
+* Corrected some edge cases that might result in errors
+
 # ineptR 0.2.0
 
 * Fixed issues to comply with the CRAN policy:

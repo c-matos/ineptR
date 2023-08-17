@@ -47,5 +47,5 @@ get_ine_data("0008206", dim1 = "S7A1996", dim2 = c("11","111"),
 }
 \seealso{
 \code{\link[=get_dim_values]{get_dim_values()}} can be used to identify the values to be passed to \emph{dimN} parameters, in the variable categ_cod.
-See \url{https://c-matos.github.io/ineptR/articles/use_cases.html}{this vignette} for further clarification on how to obtain only a subset of the data.
+See \href{https://c-matos.github.io/ineptR/articles/use_cases.html}{this vignette} for further clarification on how to obtain only a subset of the data.
 }
