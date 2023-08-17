@@ -88,23 +88,31 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
       ###
       req <- current$value %>%
         purrr::map(~httr2::request(base_url = .x) %>%
-              httr2::req_user_agent("ineptR (https://c-matos.github.io/ineptR/)") %>%
-              httr2::req_error(is_error = ~FALSE))
+                     httr2::req_user_agent("ineptR (https://c-matos.github.io/ineptR/)") %>%
+                     httr2::req_error(is_error = ~FALSE))
 
       resp <- req %>% purrr::map(gracefully_fail)
       if (is.null(resp)) {
         return(invisible(NULL))
       }
       ####
-      resp2 <- resp %>%
-        purrr::map_df(~httr2::resp_body_json(.x) %>%
-              magrittr::extract2(1) %>%
-              magrittr::use_series("Dados") %T>%
-              {assign("temp_dim1", names(.), envir = e)} %>%
-              magrittr::extract2(1) %>%
-              purrr::map_dfr(data.frame) %>%
-              dplyr::mutate(dim_1 = e$temp_dim1))
-      resp2
+      # resp[[1]] %>%
+      #   purrr::map_df(~httr2::resp_body_json(.x) %>%
+      #                   magrittr::extract2(1) %>%
+      #                   magrittr::use_series("Dados") %T>%
+      #                   {assign("temp_dim1", names(.), envir = e)} %>%
+      #                   magrittr::extract2(1) %>%
+      #                   purrr::map_dfr(data.frame) %>%
+      #                   dplyr::mutate(dim_1 = e$temp_dim1))
+      resp[[1]] %>%
+        httr2::resp_body_json() %>%
+        magrittr::extract2(1) %>%
+        magrittr::use_series("Dados") %T>%
+        {assign("temp_dim1", names(.), envir = e)} %>%
+        magrittr::extract2(1) %>%
+        purrr::map_dfr(data.frame) %>%
+        dplyr::mutate(dim_1 = e$temp_dim1)
+      #return(resp2)
     }) %>%
     dplyr::relocate(dim_1, .before=1)
 
@@ -118,4 +126,3 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
   }
   return(ret_data)
 }
-

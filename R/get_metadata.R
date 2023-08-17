@@ -24,5 +24,10 @@ get_metadata <- function(indicator, lang = "PT") {
   }
   temp_metadata["Dimensoes"] <- NULL
   temp_metadata["Sucesso"] <- NULL
+  if (length(temp_metadata)==0) {
+    #message("(PT) O código do indicador não existe. / (EN) The indicator code does not exist.")
+    message("(PT) O c\u00F3digo do indicador n\u00E3o existe. / (EN) The indicator code does not exist.")
+    return(invisible(NULL))
+  }
   return(temp_metadata)
 }
