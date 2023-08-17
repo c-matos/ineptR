@@ -6,7 +6,7 @@ test_that("Problems return NULL, with a message", {
 test_that("Indicator exists and call succeded", {
   expect_type(get_dim_info("0011823"),"list")
   expect_s3_class(get_dim_info("0011823"),"data.frame")
-  expect_named(get_dim_info("0011823"))
+  #expect_named(get_dim_info("0011823"))
   expect_true(all(c('dim_num','abrv','versao') %in% names(get_dim_info("0011823")))) #at least these columns must exist
 })
 

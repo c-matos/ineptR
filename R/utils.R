@@ -162,7 +162,6 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
     for (i in as.integer(remaining_dims$dim_num)) {
       mystat <- remaining_dims %>%
         dplyr::filter(!dim_num==i) %>%
-        dplyr::summarise(p = prod(n)) %>%
         as.integer()
 
       temp_out <- c(temp_out, stats::setNames(mystat, i))
@@ -198,7 +197,7 @@ get_api_urls <- function(indicator, max_cells=30000, lang="PT", ...) {
 
 gracefully_fail <- function(request, path = NULL) {
   #Fails gracefully to comply with CRAN policy
-  #path is used to save directly to disk
+  #path is used to save directly to disk. Not being used
   try_GET <- function(request) {
     tryCatch(
       resp <- request %>%

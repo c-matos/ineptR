@@ -51,7 +51,6 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
   #start counters to estimate extraction duration
   if (expected.duration) {
     pb <- txtProgressBar(min = 0, max = length(myurls), style = 3, width = round(getOption("width")/4)) #initialize progress bar
-    #start_time <- proc.time()
     global_time <- proc.time()
   }
 
@@ -61,20 +60,15 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
     dplyr::mutate(id = dplyr::row_number()) %>%
     purrr::pmap_dfr(function(...) {
       current <- tibble::tibble(...)
-        # do stuff and access content from current row with "current"
-
+      # do stuff and access content from current row with "current"
       if (expected.duration) {
         setTxtProgressBar(pb,current$id)
-        #aa <- sprintf("Extracting part %s of %s", current$id, length(myurls))
-
-        #last_execution_duration <- as.double(proc.time() - start_time)[[3]] # single execution duration
-
         if (current$id!=1) {
           est <- as.double(((proc.time() - global_time)[[3]])/current$id)
         }
         else {
           est <- Inf
-          }
+        }
 
         #expected remaining duration
         remaining <- (length(myurls) - current$id) * est
@@ -84,8 +78,6 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
       }
 
       e <- new.env()
-      # return
-      ###
       req <- current$value %>%
         purrr::map(~httr2::request(base_url = .x) %>%
                      httr2::req_user_agent("ineptR (https://c-matos.github.io/ineptR/)") %>%
@@ -95,15 +87,6 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
       if (is.null(resp)) {
         return(invisible(NULL))
       }
-      ####
-      # resp[[1]] %>%
-      #   purrr::map_df(~httr2::resp_body_json(.x) %>%
-      #                   magrittr::extract2(1) %>%
-      #                   magrittr::use_series("Dados") %T>%
-      #                   {assign("temp_dim1", names(.), envir = e)} %>%
-      #                   magrittr::extract2(1) %>%
-      #                   purrr::map_dfr(data.frame) %>%
-      #                   dplyr::mutate(dim_1 = e$temp_dim1))
       resp[[1]] %>%
         httr2::resp_body_json() %>%
         magrittr::extract2(1) %>%
@@ -115,9 +98,6 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
       #return(resp2)
     }) %>%
     dplyr::relocate(dim_1, .before=1)
-
-  #rm(temp_dim1_01348531)
-  #rm(e)
 
   #total duration
   if (expected.duration) {

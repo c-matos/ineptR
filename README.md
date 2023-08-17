@@ -8,6 +8,8 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version-last-release/ineptR?color=blue)](https://CRAN.R-project.org/package=ineptR)
 [![R-CMD-check](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/c-matos/ineptR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/c-matos/ineptR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/c-matos/ineptR?branch=main)
 <!-- badges: end -->
 
 ## Overview
@@ -100,7 +102,7 @@ get_metadata("0010003")
 #> [1] "2022-12-28"
 #> 
 #> $DataExtracao
-#> [1] "2023-08-14T16:46:30.405+01:00"
+#> [1] "2023-08-17T21:01:49.507+01:00"
 ```
 
 4.  Get information about the dimensions:

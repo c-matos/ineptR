@@ -43,18 +43,7 @@ get_dim_values <- function(indicator, lang = "PT") {
       tidyr::unnest(value) %>%
       tidyr::unnest_wider(value)
   } else {
-    metadata <- get_metadata_raw(indicator = indicator, lang = lang)
-
-    if (is.null(metadata)) {
-      return(invisible(NULL))
-    }
-
-    message(metadata %>%
-      magrittr::extract2("Sucesso") %>%
-      magrittr::use_series("Falso") %>%
-      magrittr::extract2(1) %>%
-      magrittr::use_series("Msg"))
-
+    message("(PT) O c\u00F3digo do indicador n\u00E3o existe. / (EN) The indicator code does not exist.")
     return(invisible(NULL))
   }
 }
