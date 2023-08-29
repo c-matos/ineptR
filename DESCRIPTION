@@ -16,6 +16,7 @@ Imports:
     httr2,
     lifecycle,
     magrittr,
+    progressr,
     purrr,
     readr,
     stringr,

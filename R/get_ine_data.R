@@ -51,8 +51,9 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
 
   #start counters to estimate extraction duration
   if (expected.duration) {
-    pb <- txtProgressBar(min = 0, max = length(myurls), style = 3, width = round(getOption("width")/4)) #initialize progress bar
-    global_time <- proc.time()
+    progressr::handlers(global = T)
+    progressr::handlers("cli")
+    p <- progressr::progressor(along = myurls)
   }
 
   #!!!!!!!
@@ -60,23 +61,11 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
     tibble::as_tibble() %>%
     dplyr::mutate(id = dplyr::row_number()) %>%
     purrr::pmap_dfr(function(...) {
-      current <- tibble::tibble(...)
-      # do stuff and access content from current row with "current"
-      if (expected.duration) {
-        setTxtProgressBar(pb,current$id)
-        if (current$id!=1) {
-          est <- as.double(((proc.time() - global_time)[[3]])/current$id)
-        }
-        else {
-          est <- Inf
-        }
+      current <- tibble::tibble(...) # do stuff and access content from current row with "current"
 
-        #expected remaining duration
-        remaining <- (length(myurls) - current$id) * est
-        cat(paste(sprintf(" // Output: %s of %s", current$id, length(myurls)),
-                  sprintf(" // Remaining: %.1f seconds", remaining),
-                  sep = ""))
-      }
+        if (expected.duration) {
+          p(sprintf("Extracting %g", current$id))
+        }
 
       e <- new.env()
       req <- current$value %>%
@@ -85,9 +74,11 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
                      httr2::req_error(is_error = ~FALSE))
 
       resp <- req %>% purrr::map(gracefully_fail)
+
       if (is.null(resp)) {
         return(invisible(NULL))
       }
+
       resp[[1]] %>%
         httr2::resp_body_json() %>%
         magrittr::extract2(1) %>%
@@ -96,14 +87,11 @@ get_ine_data <- function(indicator, lang="PT", expected.duration=FALSE, max_cell
         magrittr::extract2(1) %>%
         purrr::map_dfr(data.frame) %>%
         dplyr::mutate(dim_1 = e$temp_dim1)
-      #return(resp2)
     }) %>%
     dplyr::relocate(dim_1, .before=1)
 
-  #total duration
   if (expected.duration) {
-    cat(sprintf("Total duration: %.1f seconds", as.double(proc.time() - global_time)[[3]]))
-    close(pb)
+    progressr::handlers(global = F)
   }
   return(ret_data)
 }

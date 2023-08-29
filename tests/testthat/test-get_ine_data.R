@@ -21,10 +21,10 @@ test_that("HTTP errors arre downgraded to messages", {
   })
 })
 
-test_that("Duration log succeeds", {
-  skip_on_cran()
-  expect_output(get_ine_data("0011823", expected.duration = T),"Output: 1 of")
-})
+# test_that("Duration log succeeds", {
+#   skip_on_cran()
+#   expect_output(get_ine_data("0011823", expected.duration = T),"Output: 1 of")
+# })
 
 test_that("User input is correct", {
   expect_error(get_ine_data("0010003", Blah = c("1234"))) #Wrong dimension name
