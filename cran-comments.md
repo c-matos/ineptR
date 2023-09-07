@@ -1,3 +1,8 @@
+## Resubmission v0.2.1
+This is a resubmission. In this version I have:
+
+* Fixed get_dim_values() which was not failling gracefully in some situations.
+
 ## Resubmission v0.2.0
 This is a resubmission. In this version I have:
 
