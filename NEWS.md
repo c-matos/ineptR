@@ -1,4 +1,4 @@
-# ineptR (development version)
+# ineptR 0.2.1
 * Added unit testing and codecov integration
 * Corrected some edge cases that might result in errors
 
